@@ -83,6 +83,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
       <Command>xcopy "$(SolutionDir)DLL\*" "$(TargetDir)"  /Y/D</Command>

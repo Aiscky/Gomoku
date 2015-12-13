@@ -8,9 +8,7 @@ int WinMain(
 	int nCmdShow
 	)
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Close);
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(600, 400), "Gomoku", sf::Style::Close);
 
 	while (window.isOpen())
 	{
@@ -22,7 +20,6 @@ int WinMain(
 		}
 
 		window.clear();
-		window.draw(shape);
 		window.display();
 	}
 

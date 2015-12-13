@@ -137,7 +137,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ExitButton.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuEventManager.cpp" />
+    <ClCompile Include="MenuModel.cpp" />
+    <ClCompile Include="PlayerVsIAButton.cpp" />
+    <ClCompile Include="PlayerVsPlayerButton.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="ExitButton.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="MenuEventManager.h" />
+    <ClInclude Include="MenuModel.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="PlayerVsIAButton.h" />
+    <ClInclude Include="PlayerVsPlayerButton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

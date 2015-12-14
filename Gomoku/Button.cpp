@@ -26,7 +26,11 @@ Button::Button(
 
 	if (!_buttonFont.loadFromFile("Track.ttf"))
 	{
-		OutputDebugString(strerror_s(errno));
+		char *error = (char *)malloc(265);
+
+		strerror_s(error, 256, errno);
+		OutputDebugString(error);
+		OutputDebugString("\n");
 		OutputDebugString("Failed to load font\n");
 		exit(EXIT_FAILURE);
 	}

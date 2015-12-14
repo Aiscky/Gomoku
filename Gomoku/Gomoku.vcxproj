@@ -87,8 +87,8 @@
     </Link>
     <PreBuildEvent>
       <Command>xcopy "$(SolutionDir)DLL\*" "$(TargetDir)"  /Y /D
-mkdir "$(TargetDir)Fonts"
-xcopy "$(SolutionDir)Fonts" "$(TargetDir)Fonts" /Y /D</Command>
+xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)" /Y /D
+</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

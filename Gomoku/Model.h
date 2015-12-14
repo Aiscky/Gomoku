@@ -5,6 +5,6 @@
 class Model
 {
 public:
-	virtual ~Model() = 0;
+	virtual ~Model() {};
 	virtual void Display(sf::RenderWindow *window) = 0;
 };

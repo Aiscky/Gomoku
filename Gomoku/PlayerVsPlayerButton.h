@@ -10,13 +10,14 @@ class PlayerVsPlayerButton : public Button
 
 private:
 	EventManager **_eventManagerAddr;
-	static unsigned int _buttonWidth;
-	static unsigned int _buttonHeight;
-	static unsigned int _buttonOriginX;
-	static unsigned int _buttonOriginY;
+	sf::RenderWindow *_window;
+	static const unsigned int _buttonWidth = 0;
+	static const unsigned int _buttonHeight = 0;
+	static const unsigned int _buttonOriginX = 0;
+	static const unsigned int _buttonOriginY = 0;
 
 public:
-	PlayerVsPlayerButton(EventManager **eventManagerAddr);
+	PlayerVsPlayerButton(EventManager **eventManagerAddr, sf::RenderWindow *window);
 	virtual ~PlayerVsPlayerButton();
 	virtual bool ButtonPressed();
 };

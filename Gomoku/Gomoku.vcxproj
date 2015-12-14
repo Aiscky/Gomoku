@@ -86,7 +86,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy "$(SolutionDir)DLL\*" "$(TargetDir)"  /Y/D</Command>
+      <Command>xcopy "$(SolutionDir)DLL\*" "$(TargetDir)"  /Y /D
+xcopy "$(SolutionDir)Fonts" "$(TargetDir)Fonts" /Y /D</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

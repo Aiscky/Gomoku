@@ -3,6 +3,7 @@
 #include "EventManager.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "MenuEventManager.h"
 
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 400
@@ -27,7 +28,7 @@ private:
 public:
 	void InitWindow();
 	void Run();
-	GameEngine(EventManager *eventManager);
+	GameEngine();
 	~GameEngine();
 };
 

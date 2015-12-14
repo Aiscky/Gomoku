@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <Windows.h>
 
 class MenuModel : public Model
 {

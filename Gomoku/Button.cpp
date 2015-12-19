@@ -1,8 +1,7 @@
 #include "Button.h"
 #include <tuple>
 
-Button::Button(
-	sf::Color idleColor,
+Button::Button(sf::Color idleColor,
 	sf::Color activeColor,
 	sf::Color pressedColor,
 	unsigned int buttonWidth,
@@ -19,7 +18,7 @@ Button::Button(
 
 	_buttonBackground.setPosition(buttonOriginX, buttonOriginY);
 	_buttonBackground.setSize(sf::Vector2f(buttonWidth, buttonHeight));
-	_buttonBackground.setFillColor(sf::Color::Black);
+	_buttonBackground.setFillColor(idleColor);
 
 	//TODO set text content,
 	//TODO Make a font manager
@@ -57,6 +56,21 @@ void Button::centerTextInBackground()
 	textPosition.x = textRect.left + _buttonBackground.getSize().x / 2 - textRect.width / 2;
 	textPosition.y = textRect.top + _buttonBackground.getSize().y / 2 - textRect.height / 2;
 	_buttonContent.setPosition(textPosition);
+}
+
+void Button::setButtonIdle()
+{
+	this->_buttonBackground.setFillColor(this->_idleColor);
+}
+
+void Button::setButtonActive()
+{
+	this->_buttonBackground.setFillColor(this->_activeColor);
+}
+
+void Button::setButtonPressed()
+{
+	this->_buttonBackground.setFillColor(this->_pressedColor);
 }
 
 

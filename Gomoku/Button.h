@@ -15,7 +15,6 @@ protected:
 	sf::RectangleShape _buttonBackground;
 	sf::Font _buttonFont;
 	sf::Text _buttonContent;
-	bool _isEnabled;
 
 public:
 	Button(sf::Color idleColor,
@@ -32,5 +31,11 @@ public:
 	void Display(sf::RenderWindow *window);
 	virtual bool ButtonPressed() = 0;
 	void centerTextInBackground();
+
+	void setButtonIdle();
+	void setButtonActive();
+	void setButtonPressed();
+
+	bool _isEnabled;
 };
 

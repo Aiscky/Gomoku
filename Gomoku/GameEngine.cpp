@@ -29,7 +29,6 @@ GameEngine::GameEngine()
 	_eventManager = new MenuEventManager(_window, &(this->_eventManager));
 }
 
-
 GameEngine::~GameEngine()
 {
 	delete this->_window;

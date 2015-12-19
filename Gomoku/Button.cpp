@@ -23,7 +23,7 @@ Button::Button(sf::Color idleColor,
 	//TODO set text content,
 	//TODO Make a font manager
 
-	if (!_buttonFont.loadFromFile("Track.ttf"))
+	if (!_buttonFont.loadFromFile("Fonts/Track.ttf"))
 	{
 		char *error = (char *)malloc(265);
 

@@ -5,8 +5,8 @@
 #include <iostream>
 #include "MenuEventManager.h"
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 400
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 800
 #define WINDOW_TITLE "Gomoku"
 #define WINDOW_STYLE 4
 

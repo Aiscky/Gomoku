@@ -3,12 +3,7 @@
 #include "GameEngine.h"
 #include "MenuEventManager.h"
 
-int _stdcall WinMain(
-	HINSTANCE hInstance,
-	HINSTANCE hPrevInstance,
-	LPSTR lpCmdLine,
-	int nCmdShow
-	)
+int main()
 {
 	GameEngine gameEngine;
 

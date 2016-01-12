@@ -38,7 +38,7 @@ Button::Button(sf::Color idleColor,
 	_buttonContent.setString(buttonContent);
 	_buttonContent.setColor(sf::Color::White);	
 	_buttonContent.setCharacterSize(20);
-	//centerTextInBackground();
+	centerTextInBackground();
 }
 
 void Button::Display(sf::RenderWindow *window)
@@ -53,8 +53,8 @@ void Button::centerTextInBackground()
 	sf::FloatRect textRect;
 
 	textRect = _buttonContent.getLocalBounds();
-	textPosition.x = textRect.left + _buttonBackground.getSize().x / 2 - textRect.width / 2;
-	textPosition.y = textRect.top + _buttonBackground.getSize().y / 2 - textRect.height / 2;
+	textPosition.x = textRect.left + _buttonBackground.getPosition().x + (_buttonBackground.getSize().x / 2 - textRect.width / 2);
+	textPosition.y = textRect.top + _buttonBackground.getPosition().y + (_buttonBackground.getSize().y / 2 - textRect.height);
 	_buttonContent.setPosition(textPosition);
 }
 
@@ -72,6 +72,3 @@ void Button::setButtonPressed()
 {
 	this->_buttonBackground.setFillColor(this->_pressedColor);
 }
-
-
-

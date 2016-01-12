@@ -3,6 +3,7 @@
 void MenuModel::Init()
 {
 	_buttonList.push_back(new ExitButton(_window));
+	_buttonList.push_back(new PlayerVsPlayerButton(_eventManagerAddr, _window));
 }
 
 MenuModel::MenuModel(sf::RenderWindow *window, EventManager **eventManager)

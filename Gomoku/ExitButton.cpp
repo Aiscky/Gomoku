@@ -1,7 +1,7 @@
 #include "ExitButton.h"
 
 ExitButton::ExitButton(sf::RenderWindow *window)
-	: Button(sf::Color::Black, sf::Color::White, sf::Color::White, _buttonWidth, _buttonHeight, _buttonOriginX, _buttonOriginY, "EXIT", false)
+	: Button(sf::Color::Cyan, sf::Color::Green, sf::Color::Red, _buttonWidth, _buttonHeight, _buttonOriginX, _buttonOriginY, "EXIT", false)
 {
 	_window = window;
 }

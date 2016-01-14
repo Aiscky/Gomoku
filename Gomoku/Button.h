@@ -5,8 +5,6 @@
 #include <iostream>
 #include <Windows.h>
 
-enum mode { PVP, FACILE, NORMAL, DIFFICILE };
-
 class Button
 {
 protected:

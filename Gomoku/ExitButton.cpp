@@ -15,4 +15,3 @@ bool ExitButton::ButtonPressed()
 	_window->close();
 	return true;
 }
-

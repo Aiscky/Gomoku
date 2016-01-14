@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Planti">
       <UniqueIdentifier>{015c3d03-8ed8-4cd0-a23d-d1f67aad9d93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\PlayerVsAI">
+      <UniqueIdentifier>{bd532f4e-15f6-4608-9d51-8e6444cf2115}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,14 +45,14 @@
     <ClCompile Include="PlayerVsPlayerButton.cpp">
       <Filter>Source Files\Menu\Buttons</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerVsIAButton.cpp">
-      <Filter>Source Files\Menu\Buttons</Filter>
-    </ClCompile>
     <ClCompile Include="ExitButton.cpp">
       <Filter>Source Files\Menu\Buttons</Filter>
     </ClCompile>
     <ClCompile Include="Goban.cpp">
       <Filter>Source Files\Planti</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerVsIAButton.cpp">
+      <Filter>Source Files\Menu\Buttons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,13 +77,13 @@
     <ClInclude Include="PlayerVsPlayerButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerVsIAButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ExitButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Goban.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerVsIAButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

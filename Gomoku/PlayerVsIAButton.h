@@ -7,17 +7,17 @@
 
 class PlayerVsIAButton : public Button
 {
+
 private:
 	EventManager **_eventManagerAddr;
+	sf::RenderWindow *_window;
+	static const unsigned int _buttonWidth = 120;
+	static const unsigned int _buttonHeight = 30;
+	static const unsigned int _buttonOriginX = 590;
+	static const unsigned int _buttonOriginY = 200;
 
 public:
-	PlayerVsIAButton(
-		EventManager **eventManagerAddr,
-		sf::RenderWindow *window,
-		unsigned int buttonWidth,
-		unsigned int buttonHeight,
-		unsigned int buttonOriginX,
-		unsigned int buttonOriginY);
+	PlayerVsIAButton(EventManager **eventManagerAddr, sf::RenderWindow *window);
 	virtual ~PlayerVsIAButton();
 	virtual bool ButtonPressed();
 };

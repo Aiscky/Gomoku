@@ -1,15 +1,10 @@
 #include "PlayerVsIAButton.h"
 
-PlayerVsIAButton::PlayerVsIAButton(
-	EventManager **eventManagerAddr,
-	sf::RenderWindow *window,
-	unsigned int buttonWidth,
-	unsigned int buttonHeight,
-	unsigned int buttonOriginX,
-	unsigned int buttonOriginY)
-	: Button(sf::Color::White, sf::Color::White, sf::Color::White, buttonWidth, buttonHeight, buttonOriginX, buttonOriginY, "Player Vs IA", false)
+PlayerVsIAButton::PlayerVsIAButton(EventManager **eventManagerAddr, sf::RenderWindow *window)
+	: Button(sf::Color::Cyan, sf::Color::Green, sf::Color::Red, _buttonWidth, _buttonHeight, _buttonOriginX, _buttonOriginY, "1 Player", false)
 {
 	_eventManagerAddr = eventManagerAddr;
+	_window = window;
 }
 
 

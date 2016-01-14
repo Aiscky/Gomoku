@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Menu\Buttons">
       <UniqueIdentifier>{4fd7a3d4-f5cd-45ab-a5df-84dba08bb924}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Planti">
+      <UniqueIdentifier>{015c3d03-8ed8-4cd0-a23d-d1f67aad9d93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="ExitButton.cpp">
       <Filter>Source Files\Menu\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="Goban.cpp">
+      <Filter>Source Files\Planti</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExitButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Goban.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

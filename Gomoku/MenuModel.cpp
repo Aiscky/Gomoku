@@ -2,8 +2,11 @@
 
 void MenuModel::Init()
 {
-	_buttonList.push_back(new ExitButton(_window));
+	_buttonList.push_back(new PlayerVsIAButton(_eventManagerAddr, _window));
 	_buttonList.push_back(new PlayerVsPlayerButton(_eventManagerAddr, _window));
+	_buttonList.push_back(new ExitButton(_window));
+
+	_buttonList[0]->setButtonActive();
 }
 
 MenuModel::MenuModel(sf::RenderWindow *window, EventManager **eventManager)

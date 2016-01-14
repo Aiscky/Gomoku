@@ -143,6 +143,7 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ExitButton.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="Goban.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuEventManager.cpp" />
     <ClCompile Include="MenuModel.cpp" />
@@ -154,6 +155,7 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="ExitButton.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="Goban.h" />
     <ClInclude Include="MenuEventManager.h" />
     <ClInclude Include="MenuModel.h" />
     <ClInclude Include="Model.h" />

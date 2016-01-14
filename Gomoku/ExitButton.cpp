@@ -6,10 +6,6 @@ ExitButton::ExitButton(sf::RenderWindow *window)
 	_window = window;
 }
 
-
-ExitButton::~ExitButton()
-{}
-
 bool ExitButton::ButtonPressed()
 {
 	_window->close();

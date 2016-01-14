@@ -5,6 +5,7 @@
 
 class EventManager
 {
+
 protected:
 	sf::RenderWindow *_window;
 	Model *_model;

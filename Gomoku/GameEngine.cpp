@@ -25,7 +25,6 @@ GameEngine::GameEngine()
 	_windowInfo._windowStyle = WINDOW_STYLE;
 
 	InitWindow();
-
 	_eventManager = new MenuEventManager(_window, &(this->_eventManager));
 }
 

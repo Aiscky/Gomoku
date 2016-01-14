@@ -7,11 +7,6 @@ PlayerVsPlayerButton::PlayerVsPlayerButton(EventManager **eventManagerAddr, sf::
 	_window = window;
 }
 
-PlayerVsPlayerButton::~PlayerVsPlayerButton()
-{
-
-}
-
 bool PlayerVsPlayerButton::ButtonPressed()
 {
 	delete (*_eventManagerAddr);

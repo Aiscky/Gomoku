@@ -7,11 +7,6 @@ MenuEventManager::MenuEventManager(sf::RenderWindow *window, EventManager **game
 	_model->Display(window);
 }
 
-
-MenuEventManager::~MenuEventManager()
-{
-}
-
 bool MenuEventManager::HandleEvent()
 {
 	sf::Event event;

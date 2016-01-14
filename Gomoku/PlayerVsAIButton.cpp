@@ -1,19 +1,13 @@
-#include "PlayerVsIAButton.h"
+#include "PlayerVsAIButton.h"
 
-PlayerVsIAButton::PlayerVsIAButton(EventManager **eventManagerAddr, sf::RenderWindow *window)
+PlayerVsAIButton::PlayerVsAIButton(EventManager **eventManagerAddr, sf::RenderWindow *window)
 	: Button(sf::Color::Cyan, sf::Color::Green, sf::Color::Red, _buttonWidth, _buttonHeight, _buttonOriginX, _buttonOriginY, "1 PLayer", false)
 {
 	_eventManagerAddr = eventManagerAddr;
 	_window = window;
 }
 
-
-PlayerVsIAButton::~PlayerVsIAButton()
-{
-
-}
-
-bool PlayerVsIAButton::ButtonPressed()
+bool PlayerVsAIButton::ButtonPressed()
 {
 	delete (*_eventManagerAddr);
 	(*_eventManagerAddr); //ADD NEW EVENTMANAGER

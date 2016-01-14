@@ -18,7 +18,7 @@ private:
 
 public:
 	PlayerVsPlayerButton(EventManager **eventManagerAddr, sf::RenderWindow *window);
-	virtual ~PlayerVsPlayerButton();
+	virtual ~PlayerVsPlayerButton() {};
 	virtual bool ButtonPressed();
 };
 

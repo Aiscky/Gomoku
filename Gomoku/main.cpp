@@ -8,6 +8,5 @@ int main()
 	GameEngine gameEngine;
 
 	gameEngine.Run();
-	
 	return 0;
 }

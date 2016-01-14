@@ -72,3 +72,8 @@ void Button::setButtonPressed()
 {
 	this->_buttonBackground.setFillColor(this->_pressedColor);
 }
+
+bool Button::isEnabled()
+{
+	return (_isEnabled);
+}

@@ -2,7 +2,7 @@
 
 void MenuModel::Init()
 {
-	_buttonList.push_back(new PlayerVsIAButton(_eventManagerAddr, _window));
+	_buttonList.push_back(new PlayerVsAIButton(_eventManagerAddr, _window));
 	_buttonList.push_back(new PlayerVsPlayerButton(_eventManagerAddr, _window));
 	_buttonList.push_back(new ExitButton(_window));
 
@@ -16,11 +16,6 @@ MenuModel::MenuModel(sf::RenderWindow *window, EventManager **eventManager)
 	this->_index = 0;
 
 	this->Init();
-}
-
-MenuModel::~MenuModel()
-{
-
 }
 
 void MenuModel::Display(sf::RenderWindow *window)
@@ -44,7 +39,7 @@ void MenuModel::GoPrevious()
 	else
 		_index -= 1;
 	this->_buttonList[_index]->setButtonActive();
-	if (this->_buttonList[_index]->_isEnabled)
+	if (this->_buttonList[_index]->isEnabled())
 	{
 		this->GoPrevious();
 	}
@@ -58,7 +53,7 @@ void MenuModel::GoNext()
 	else
 		_index += 1;
 	this->_buttonList[_index]->setButtonActive();
-	if (this->_buttonList[_index]->_isEnabled)
+	if (this->_buttonList[_index]->isEnabled())
 	{
 		this->GoNext();
 	}

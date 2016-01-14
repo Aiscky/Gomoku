@@ -8,7 +8,7 @@
 
 class ExitButton : public Button
 {
-	
+
 private:
 	EventManager **_eventManagerAddr;
 	static const unsigned int _buttonWidth = 120;
@@ -18,7 +18,7 @@ private:
 
 public:
 	ExitButton(sf::RenderWindow *window);
-	virtual ~ExitButton();
+	virtual ~ExitButton() {};
 	virtual bool ButtonPressed();
 };
 

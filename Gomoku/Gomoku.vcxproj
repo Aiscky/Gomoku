@@ -143,11 +143,12 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ExitButton.cpp" />
     <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="Goban.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuEventManager.cpp" />
     <ClCompile Include="MenuModel.cpp" />
-    <ClCompile Include="PlayerVsIAButton.cpp" />
+    <ClCompile Include="PlayerVsAIEventManager.cpp" />
+    <ClCompile Include="PlayerVsAIModel.cpp" />
+    <ClCompile Include="PlayerVsAIButton.cpp" />
     <ClCompile Include="PlayerVsPlayerButton.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,11 +156,12 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="ExitButton.h" />
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="Goban.h" />
     <ClInclude Include="MenuEventManager.h" />
     <ClInclude Include="MenuModel.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="PlayerVsIAButton.h" />
+    <ClInclude Include="PlayerVsAIEventManager.h" />
+    <ClInclude Include="PlayerVsAIModel.h" />
+    <ClInclude Include="PlayerVsAIButton.h" />
     <ClInclude Include="PlayerVsPlayerButton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

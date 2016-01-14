@@ -5,7 +5,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include "EventManager.h"
 
-class PlayerVsIAButton : public Button
+class PlayerVsAIButton : public Button
 {
 
 private:
@@ -17,8 +17,8 @@ private:
 	static const unsigned int _buttonOriginY = 200;
 
 public:
-	PlayerVsIAButton(EventManager **eventManagerAddr, sf::RenderWindow *window);
-	virtual ~PlayerVsIAButton();
+	PlayerVsAIButton(EventManager **eventManagerAddr, sf::RenderWindow *window);
+	virtual ~PlayerVsAIButton() {};
 	virtual bool ButtonPressed();
 };
 

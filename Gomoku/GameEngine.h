@@ -12,6 +12,7 @@
 
 class GameEngine
 {
+
 private:
 	EventManager *_eventManager;
 	sf::RenderWindow *_window;

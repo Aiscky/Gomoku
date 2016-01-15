@@ -19,8 +19,9 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 	this->Init();
 }
 
-void PlayerVsAIModel::Clicked()
+void PlayerVsAIModel::Clicked(sf::Vector2i position)
 {
+	_window->clear();
 	sf::Texture texture;
 
 	texture.loadFromFile("../Images/Goban.bmp");
@@ -28,9 +29,9 @@ void PlayerVsAIModel::Clicked()
 	sprite.setPosition(sf::Vector2f(240, 0));
 	_window->draw(sprite);
 
-	texture.loadFromFile("../Images/Blanc.bmp");
+	texture.loadFromFile("../Images/White.png");
 	sf::Sprite sprite2(texture);
-	sprite2.setPosition(sf::Vector2f(0, 0));
+	sprite2.setPosition((sf::Vector2f)position);
 	_window->draw(sprite2);
 	_window->display();
 }

@@ -19,5 +19,5 @@ public:
 	virtual ~PlayerVsAIModel() {};
 	virtual void Display(sf::RenderWindow *) {};
 	void Init();
-	void Clicked();
+	void Clicked(sf::Vector2i);
 };

@@ -17,7 +17,7 @@ bool PlayerVsAIEventManager::HandleEvent()
 			(*_window).close();
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			((PlayerVsAIModel *)this->_model)->Clicked();
+			((PlayerVsAIModel *)this->_model)->Clicked(sf::Mouse::getPosition(*_window));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{	

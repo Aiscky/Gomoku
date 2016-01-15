@@ -2,13 +2,13 @@
 
 void PlayerVsAIModel::Init()
 {
-	sf::Texture texture;
-
-	texture.loadFromFile("../Images/Goban.bmp");
-	sf::Sprite sprite(texture);
-	sprite.setPosition(sf::Vector2f(240, 0));
-	_window->draw(sprite);
-	_window->display();
+	_gridBackgroundTexture.loadFromFile("Images/Goban.bmp");
+	_gridBackground.setTexture(_gridBackgroundTexture);
+	_gridBackground.setPosition(sf::Vector2f(240, 0));
+	_blackTexture.loadFromFile("Images/Black.png");
+	_black.setTexture(_blackTexture);
+	_whiteTexture.loadFromFile("Images/White.png");
+	_white.setTexture(_whiteTexture);
 }
 
 PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventManager)
@@ -19,19 +19,16 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 	this->Init();
 }
 
-void PlayerVsAIModel::Clicked(sf::Vector2i position)
+void PlayerVsAIModel::Display(sf::RenderWindow *window)
 {
 	_window->clear();
-	sf::Texture texture;
-
-	texture.loadFromFile("../Images/Goban.bmp");
-	sf::Sprite sprite(texture);
-	sprite.setPosition(sf::Vector2f(240, 0));
-	_window->draw(sprite);
-
-	texture.loadFromFile("../Images/White.png");
-	sf::Sprite sprite2(texture);
-	sprite2.setPosition((sf::Vector2f)position);
-	_window->draw(sprite2);
+	_window->draw(_gridBackground);
+	_window->draw(_white);
 	_window->display();
+}
+
+void PlayerVsAIModel::Clicked(sf::Vector2i position)
+{
+	_white.setPosition((sf::Vector2f)position);
+	_white.move(sf::Vector2f(-46, -16));
 }

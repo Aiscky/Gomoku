@@ -34,7 +34,7 @@ bool PVPEventManager::HandleEvent()
 			switch (event.mouseButton.button)
 			{
 			case sf::Mouse::Left:
-				((PVPModel*)_model)->CheckPlayable(event.mouseButton.x, event.mouseButton.y);
+				((PVPModel*)_model)->Clicked(event.mouseButton.x, event.mouseButton.y);
 				break;
 			}
 		}

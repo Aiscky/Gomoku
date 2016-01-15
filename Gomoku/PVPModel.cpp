@@ -4,9 +4,29 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 {
 	_window = window;
 	_eventManagerAddr = eventManagerAddr;
+
+	/* SETTING GRID RECT */
+
+	_gridBackgroundRect.width = 800;
+	_gridBackgroundRect.height = 800;
+	_gridBackgroundRect.top = 0;
+	_gridBackgroundRect.left = (WINDOW_WIDTH - _gridBackgroundRect.width) / 2;
+
+	/* CREATING SPRITES AND TEXTURES */
+
 	_gridBackgroundTexture.loadFromFile("Images/Goban.bmp");
 	_gridBackground.setTexture(_gridBackgroundTexture);
-	_gridBackground.setPosition(sf::Vector2f((WINDOW_WIDTH - _gridBackgroundSize) / 2, 0));
+	_gridBackground.setPosition(_gridBackgroundRect.left, _gridBackgroundRect.top);
+
+	_pawnsTexture[0].loadFromFile("Images/Black.png");
+	_pawnsTexture[1].loadFromFile("Images/White.png");
+
+	_pawnsSprites[0].setTexture(_pawnsTexture[0]);
+	_pawnsSprites[1].setTexture(_pawnsTexture[1]);
+
+	_playerTurn = false;
+	_winningStates[0] = false;
+	_winningStates[1] = false;
 }
 
 PVPModel::~PVPModel()
@@ -15,9 +35,10 @@ PVPModel::~PVPModel()
 
 // Convert coordinates to grid coordinates and check send it to arbiter
 
-bool PVPModel::CheckPlayable(float x, float y)
+bool PVPModel::Clicked(float x, float y)
 {
-	std::cout << x << " : " << y << std::endl;
+	if (_gridBackgroundRect.contains(x, y))
+		std::cout << "Click on grid" << std::endl;
 	return true;
 }
 

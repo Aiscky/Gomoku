@@ -32,7 +32,7 @@ bool MenuEventManager::HandleEvent()
 				break;
 			}
 		}
-		_model->Display(_window);
+	_model->Display(_window);
 	}
 
 	return false;

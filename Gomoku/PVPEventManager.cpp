@@ -4,7 +4,7 @@ PVPEventManager::PVPEventManager(EventManager **eventManagerAddr, sf::RenderWind
 {
 	_eventManagerAddr = eventManagerAddr;
 	_window = window;
-	_model = new PVPModel();
+	_model = new PVPModel(window, eventManagerAddr);
 	_model->Display(window);
 }
 
@@ -34,7 +34,7 @@ bool PVPEventManager::HandleEvent()
 			switch (event.mouseButton.button)
 			{
 			case sf::Mouse::Left:
-				std::cout << "MouseLeftButtonClicked" << std::endl;
+				((PVPModel*)_model)->CheckPlayable(event.mouseButton.x, event.mouseButton.y);
 				break;
 			}
 		}

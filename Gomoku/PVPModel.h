@@ -1,5 +1,7 @@
 #pragma once
 #include "Model.h"
+#include "GameEngine.h"
+
 class PVPModel :
 	public Model
 {
@@ -10,11 +12,13 @@ private:
 	char _playersPawnsLeft[2];
 	//sf::Sprite _blackPawn
 	//sf::Sprite _whitePawn
-	//sf::Sprite _gridBackground
+	sf::Texture _gridBackgroundTexture;
+	sf::Sprite _gridBackground;
 
 public:
 	PVPModel();
 	~PVPModel();
 	void Display(sf::RenderWindow *window);
+	bool CheckPlayable(sf::Vector2f);
 };
 

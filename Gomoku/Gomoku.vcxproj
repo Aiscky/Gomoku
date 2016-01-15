@@ -89,7 +89,8 @@
       <Command>xcopy "$(SolutionDir)DLL\*" "$(TargetDir)"  /Y /D
 mkdir "$(TargetDir)Fonts"
 xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
-</Command>
+mkdir "$(TargetDir)Images"
+xcopy "$(SolutionDir)Images\*" "$(TargetDir)Images" /Y /D</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -140,6 +141,7 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Arbiter.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ExitButton.cpp" />
     <ClCompile Include="GameEngine.cpp" />
@@ -154,6 +156,7 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClCompile Include="PVPModel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arbiter.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="ExitButton.h" />

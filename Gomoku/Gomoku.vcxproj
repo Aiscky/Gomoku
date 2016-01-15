@@ -163,6 +163,10 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClInclude Include="PlayerVsAIModel.h" />
     <ClInclude Include="PlayerVsAIButton.h" />
     <ClInclude Include="PlayerVsPlayerButton.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="grille.gif" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

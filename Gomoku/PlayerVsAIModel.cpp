@@ -10,6 +10,6 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 void PlayerVsAIModel::clicked()
 {
 	sf::Image background;
-	background.loadFromFile("grille.gif");
+	background.loadFromFile("grilleg.gif");
 	_window->display();
 }

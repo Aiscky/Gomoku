@@ -11,15 +11,16 @@ class PlayerVsAIModel : public Model
 {
 
 private:
-	EventManager **_eventManagerAddr;
-	sf::RenderWindow *_window;
+	bool _playerTurn;
 	sf::Texture _gridBackgroundTexture;
 	sf::Sprite _gridBackground;
 	sf::Texture _whiteTexture;
-	sf::Sprite _white;
 	sf::Texture _blackTexture;
-	sf::Sprite _black;
-	std::vector<sf::Sprite> pawnList;
+	sf::Sprite _pawnColor[2];
+	std::vector<sf::Sprite> _pawns;
+
+	EventManager **_eventManagerAddr;
+	sf::RenderWindow *_window;
 
 public:
 	PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventManager);

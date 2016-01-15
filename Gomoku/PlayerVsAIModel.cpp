@@ -1,22 +1,25 @@
 #include "PlayerVsAIModel.h"
 
-PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventManager)
-{
-	this->_eventManagerAddr = eventManager;
-	this->_window = window;
-	
-}
-
-void PlayerVsAIModel::clicked()
+void PlayerVsAIModel::Init()
 {
 	sf::Texture texture;
 
 	texture.loadFromFile("../Images/Goban.bmp");
 	sf::Sprite sprite(texture);
-	sprite.setScale(sf::Vector2f(2.f, 2.f));
-
-	std::cout << "Clicked" << std::endl;
-
+	sprite.setPosition(sf::Vector2f(240, 0));
 	_window->draw(sprite);
 	_window->display();
+}
+
+PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventManager)
+{	
+	this->_eventManagerAddr = eventManager;
+	this->_window = window;
+	
+	this->Init();
+}
+
+void PlayerVsAIModel::Clicked()
+{
+
 }

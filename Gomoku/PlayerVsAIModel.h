@@ -18,5 +18,6 @@ public:
 	PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventManager);
 	virtual ~PlayerVsAIModel() {};
 	virtual void Display(sf::RenderWindow *) {};
-	void clicked();
+	void Init();
+	void Clicked();
 };

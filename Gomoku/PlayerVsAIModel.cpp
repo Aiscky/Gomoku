@@ -11,7 +11,7 @@ void PlayerVsAIModel::clicked()
 {
 	sf::Texture texture;
 
-	texture.loadFromFile("../Gomoku/grille.gif");
+	texture.loadFromFile("../Images/Goban.bmp");
 	sf::Sprite sprite(texture);
 	sprite.setScale(sf::Vector2f(2.f, 2.f));
 

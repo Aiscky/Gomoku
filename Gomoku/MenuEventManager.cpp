@@ -26,7 +26,7 @@ bool MenuEventManager::HandleEvent()
 				break;
 			case sf::Keyboard::Space:
 				((MenuModel *)this->_model)->Execute();
-				break;
+				return true;
 			case sf::Keyboard::Escape:
 				exit(EXIT_SUCCESS);
 				break;

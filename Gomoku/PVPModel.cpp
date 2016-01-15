@@ -69,7 +69,7 @@ void PVPModel::Display(sf::RenderWindow *window)
 		{
 			if (_grid[x][y] == 1)
 			{
-				_pawnsSprites[0].setPosition(240/*_gridBackgroundRect.left + _squareSize.x * x*/, 0/*_gridBackgroundRect.top + _squareSize.y * y*/);
+				_pawnsSprites[0].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
 				window->draw(_pawnsSprites[0]);
 			}
 		}

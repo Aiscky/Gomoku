@@ -10,6 +10,6 @@ PlayerVsAIButton::PlayerVsAIButton(EventManager **eventManagerAddr, sf::RenderWi
 bool PlayerVsAIButton::ButtonPressed()
 {
 	delete (*_eventManagerAddr);
-	(*_eventManagerAddr); //ADD NEW EVENTMANAGER
+	(*_eventManagerAddr) = new PlayerVsAIEventManager(_window, _eventManagerAddr);
 	return true;
 }

@@ -27,7 +27,7 @@ private:
 
 public:
 	PVPModel(sf::RenderWindow *, EventManager **);
-	~PVPModel();
+	~PVPModel() {};
 	void Display(sf::RenderWindow *window);
 	bool Clicked(float x, float y);
 };

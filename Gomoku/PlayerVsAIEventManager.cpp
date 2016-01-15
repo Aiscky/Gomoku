@@ -15,14 +15,23 @@ bool PlayerVsAIEventManager::HandleEvent()
 	{
 		if (event.type == sf::Event::Closed)
 			(*_window).close();
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (event.type == sf::Event::MouseButtonPressed)
 		{
-			((PlayerVsAIModel *)this->_model)->Clicked(sf::Mouse::getPosition(*_window));
+			switch (event.mouseButton.button)
+			{
+			case sf::Mouse::Left:
+				((PlayerVsAIModel *)this->_model)->Clicked(event.mouseButton.x, event.mouseButton.y);
+				break;
+			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{	
-			exit(EXIT_SUCCESS);
-			break;
+		if (event.type == sf::Event::KeyPressed)
+		{
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Escape:
+				exit(EXIT_SUCCESS);
+				break;
+			}
 		}
 		_model->Display(_window);
 	}

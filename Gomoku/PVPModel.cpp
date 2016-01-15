@@ -36,10 +36,6 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 	_winningStates[1] = false;
 }
 
-PVPModel::~PVPModel()
-{
-}
-
 // Convert coordinates to grid coordinates and check send it to arbiter
 
 bool PVPModel::Clicked(float x, float y)

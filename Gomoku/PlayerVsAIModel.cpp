@@ -6,9 +6,9 @@ void PlayerVsAIModel::Init()
 	_gridBackground.setTexture(_gridBackgroundTexture);
 	_gridBackground.setPosition(sf::Vector2f(240, 0));
 	_blackTexture.loadFromFile("Images/Black.png");
-	_black.setTexture(_blackTexture);
+	_pawnColor[0].setTexture(_blackTexture);
 	_whiteTexture.loadFromFile("Images/White.png");
-	_white.setTexture(_whiteTexture);
+	_pawnColor[1].setTexture(_whiteTexture);
 }
 
 PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventManager)
@@ -23,12 +23,18 @@ void PlayerVsAIModel::Display(sf::RenderWindow *window)
 {
 	_window->clear();
 	_window->draw(_gridBackground);
-	_window->draw(_white);
+	for (int i = 0; i < _pawns.size(); i++)
+		_window->draw(_pawns[i]);
 	_window->display();
 }
 
 void PlayerVsAIModel::Clicked(sf::Vector2i position)
 {
-	_white.setPosition((sf::Vector2f)position);
-	_white.move(sf::Vector2f(-46, -16));
+	_pawnColor[_playerTurn].setPosition((sf::Vector2f)position);
+	if (_playerTurn)
+		_pawnColor[_playerTurn].move(sf::Vector2f(-46, -16));
+	else
+		_pawnColor[_playerTurn].move(sf::Vector2f(-68, -36));
+	_pawns.push_back(_pawnColor[_playerTurn]);
+	_playerTurn = !_playerTurn;
 }

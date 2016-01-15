@@ -150,6 +150,8 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClCompile Include="PlayerVsAIModel.cpp" />
     <ClCompile Include="PlayerVsAIButton.cpp" />
     <ClCompile Include="PlayerVsPlayerButton.cpp" />
+    <ClCompile Include="PVPEventManager.cpp" />
+    <ClCompile Include="PVPModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
@@ -163,6 +165,8 @@ xcopy "$(SolutionDir)Fonts\*" "$(TargetDir)Fonts" /Y /D
     <ClInclude Include="PlayerVsAIModel.h" />
     <ClInclude Include="PlayerVsAIButton.h" />
     <ClInclude Include="PlayerVsPlayerButton.h" />
+    <ClInclude Include="PVPEventManager.h" />
+    <ClInclude Include="PVPModel.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

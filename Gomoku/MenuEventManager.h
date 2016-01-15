@@ -10,7 +10,7 @@ class MenuEventManager : public EventManager
 
 public:
 	MenuEventManager(sf::RenderWindow *window, EventManager **EventManagerAddr);
-	virtual ~MenuEventManager(){};
+	virtual ~MenuEventManager() {};
 	virtual bool HandleEvent();
 };
 

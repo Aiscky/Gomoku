@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Model.h"
+#include <iostream>
 
 class EventManager
 {

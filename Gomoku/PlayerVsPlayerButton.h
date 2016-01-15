@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include "EventManager.h"
+#include "PVPEventManager.h"
 
 class PlayerVsPlayerButton : public Button
 {

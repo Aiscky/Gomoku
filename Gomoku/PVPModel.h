@@ -6,19 +6,22 @@ class PVPModel :
 	public Model
 {
 private:
+	const static unsigned int _gridBackgroundSize = 800;
+
 	std::vector<std::string> _grid;
 	bool _playerTurn;
 	bool _winningStates[2];
 	char _playersPawnsLeft[2];
-	//sf::Sprite _blackPawn
-	//sf::Sprite _whitePawn
+	std::vector<sf::Sprite*> _pawns;
 	sf::Texture _gridBackgroundTexture;
 	sf::Sprite _gridBackground;
+	sf::RenderWindow *_window;
+	EventManager **_eventManagerAddr;
 
 public:
-	PVPModel();
+	PVPModel(sf::RenderWindow *, EventManager **);
 	~PVPModel();
 	void Display(sf::RenderWindow *window);
-	bool CheckPlayable(sf::Vector2f);
+	bool CheckPlayable(float x, float y);
 };
 

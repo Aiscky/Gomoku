@@ -10,6 +10,6 @@ PlayerVsPlayerButton::PlayerVsPlayerButton(EventManager **eventManagerAddr, sf::
 bool PlayerVsPlayerButton::ButtonPressed()
 {
 	delete (*_eventManagerAddr);
-	(*_eventManagerAddr); //ADD NEW EVENTMANAGER
+	(*_eventManagerAddr) = new PVPEventManager(_eventManagerAddr, _window);
 	return true;
 }

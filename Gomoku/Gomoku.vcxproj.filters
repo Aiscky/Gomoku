@@ -34,6 +34,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\PlayerVsPlayer">
+      <UniqueIdentifier>{f8d5f323-bba2-4976-bd78-d0559db2dda9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PVP">
+      <UniqueIdentifier>{fcc7eae8-f642-458a-b57c-6eb897ee458c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="PlayerVsAIButton.cpp">
       <Filter>Source Files\Menu\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="PVPEventManager.cpp">
+      <Filter>Source Files\PlayerVsPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="PVPModel.cpp">
+      <Filter>Source Files\PlayerVsPlayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PVPEventManager.h">
+      <Filter>Header Files\PVP</Filter>
+    </ClInclude>
+    <ClInclude Include="PVPModel.h">
+      <Filter>Header Files\PVP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

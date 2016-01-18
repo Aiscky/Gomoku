@@ -12,5 +12,7 @@ Arbiter::~Arbiter()
 
 bool Arbiter::CheckPlayable(bool currentPlayer, std::vector<std::string> grid, sf::Vector2u xy)
 {
+
+
 	return true;
 }

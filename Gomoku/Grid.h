@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GRID_H
+# define GRID_H
+
 #include "GameEngine.h"
 
 class Grid
@@ -15,3 +17,4 @@ public:
 	unsigned int getSideSize();
 };
 
+#endif

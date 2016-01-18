@@ -8,6 +8,7 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 	/* INSTANCNG GRID */
 
 	_grid = new Grid();
+
 	/* SETTING GRID RECT */
 
 	_gridBackgroundRect.width = 800;
@@ -44,7 +45,7 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
 		std::cout << X << " : " << Y << std::endl;
-		_grid->addPaw(x, y, 1);
+		_grid->addPawn(x, y, 1);
 	}
 	return true;
 }

@@ -4,6 +4,8 @@
 #include "AI.h"
 #include "GameEngine.h"
 
+class Grid;
+
 class PlayerVsAIModel : public Model
 {
 
@@ -13,7 +15,7 @@ private:
 
 	bool _winningStates[2];
 	char _playersPawnsLeft[2];
-	Grid *_grid;
+	Grid  *_grid;
 
 	sf::Texture _pawnsTexture[2];
 	sf::Sprite _pawnsSprites[2];

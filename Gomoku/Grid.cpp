@@ -10,7 +10,7 @@ unsigned int Grid::getSideSize()
 	return (squareNumber);
 }
 
-void Grid::addPaw(int x, int y, int color)
+void Grid::addPawn(int x, int y, int color)
 {
 	_grid[x][y] = color;
 }

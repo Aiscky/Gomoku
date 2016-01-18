@@ -9,6 +9,10 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 
 	_grid = new Grid();
 
+	/* CREATING AI */
+
+	//_bot = AI(_grid);
+
 	/* SETTING GRID RECT */
 
 	_gridBackgroundRect.width = 800;

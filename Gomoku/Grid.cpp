@@ -5,7 +5,7 @@ Grid::Grid()
 	memset(_grid, 0, squareNumber * squareNumber);
 }
 
-unsigned int Grid::getSideSize()
+unsigned char Grid::getSideSize()
 {
 	return (squareNumber);
 }
@@ -22,9 +22,9 @@ char Grid::getCell(char x, char y)
 
 void Grid::affGrid()
 {
-	for (unsigned int y = 0; y < squareNumber; y++)
+	for (unsigned char y = 0; y < squareNumber; y++)
 	{
-		for (unsigned int x = 0; x < squareNumber; x++)
+		for (unsigned char x = 0; x < squareNumber; x++)
 		{
 			std::cout << _grid[x][y];
 		}

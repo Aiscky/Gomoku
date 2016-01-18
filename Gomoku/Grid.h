@@ -12,9 +12,10 @@ private:
 public:
 	Grid();
 	~Grid() {};
-	void addPaw(int x, int y, int color);
+	void addPawn(int x, int y, char color);
 	int getCell(int x, int y);
 	unsigned int getSideSize();
+	void affGrid();
 };
 
 #endif

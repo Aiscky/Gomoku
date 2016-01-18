@@ -134,14 +134,14 @@
     <ClInclude Include="PVPModel.h">
       <Filter>Header Files\Game\PVP</Filter>
     </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Arbiter.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>Header Files\Game\PlayerVsAI</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

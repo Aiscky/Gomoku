@@ -2,7 +2,7 @@
 
 Grid::Grid()
 {
-	memset(_grid, 0, squareNumber * squareNumber);
+	memset(_grid, '0', squareNumber * squareNumber);
 }
 
 unsigned int Grid::getSideSize()
@@ -10,7 +10,7 @@ unsigned int Grid::getSideSize()
 	return (squareNumber);
 }
 
-void Grid::addPaw(int x, int y, int color)
+void Grid::addPawn(int x, int y, char color)
 {
 	_grid[x][y] = color;
 }
@@ -18,4 +18,16 @@ void Grid::addPaw(int x, int y, int color)
 int Grid::getCell(int x, int y)
 {
 	return (_grid[x][y]);
+}
+
+void Grid::affGrid()
+{
+	for (unsigned int y = 0; y < squareNumber; y++)
+	{
+		for (unsigned int x = 0; x < squareNumber; x++)
+		{
+			std::cout << _grid[x][y];
+		}
+		std::cout << std::endl;
+	}
 }

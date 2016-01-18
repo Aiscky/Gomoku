@@ -45,7 +45,7 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
 		std::cout << X << " : " << Y << std::endl;
-		_grid->addPawn(x, y, 1);
+		_grid->addPawn(X, Y, '1');
 	}
 	return true;
 }
@@ -58,12 +58,12 @@ void PlayerVsAIModel::Display(sf::RenderWindow *window)
 	{
 		for (unsigned int x = 0; x < _grid->getSideSize(); x++)
 		{
-			if (_grid->getCell(x, y) == 1)
+			if (_grid->getCell(x, y) == '1')
 			{
 				_pawnsSprites[0].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
 				window->draw(_pawnsSprites[0]);
 			}
-			if (_grid->getCell(x, y) == 2)
+			if (_grid->getCell(x, y) == '2')
 			{
 				_pawnsSprites[1].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
 				window->draw(_pawnsSprites[1]);

@@ -11,18 +11,12 @@
     <Filter Include="Source Files\Menu\Buttons">
       <UniqueIdentifier>{4fd7a3d4-f5cd-45ab-a5df-84dba08bb924}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\PlayerVsAI">
-      <UniqueIdentifier>{bd532f4e-15f6-4608-9d51-8e6444cf2115}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Header Files\Menu">
       <UniqueIdentifier>{2d86fd1c-f675-4a92-975a-f5f7e0587aa6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\PlayerVsAI">
-      <UniqueIdentifier>{c9d9553a-228c-4177-8776-5ee82ebc69d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Common">
       <UniqueIdentifier>{ba175cc2-cb85-4d0e-b689-a40d277f75a0}</UniqueIdentifier>
@@ -34,14 +28,23 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\PlayerVsPlayer">
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{2ba87e8f-cbfe-4731-8ffa-8171bf259de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\PlayerVsAI">
+      <UniqueIdentifier>{bd532f4e-15f6-4608-9d51-8e6444cf2115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\PVP">
       <UniqueIdentifier>{f8d5f323-bba2-4976-bd78-d0559db2dda9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\PVP">
-      <UniqueIdentifier>{fcc7eae8-f642-458a-b57c-6eb897ee458c}</UniqueIdentifier>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{cef5c52a-ba7c-44a4-8afc-1c364dbb1e4d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Arbiter">
-      <UniqueIdentifier>{2ba87e8f-cbfe-4731-8ffa-8171bf259de4}</UniqueIdentifier>
+    <Filter Include="Header Files\Game\PlayerVsAI">
+      <UniqueIdentifier>{c9d9553a-228c-4177-8776-5ee82ebc69d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\PVP">
+      <UniqueIdentifier>{fcc7eae8-f642-458a-b57c-6eb897ee458c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,22 +70,28 @@
       <Filter>Source Files\Menu\Buttons</Filter>
     </ClCompile>
     <ClCompile Include="PlayerVsAIEventManager.cpp">
-      <Filter>Source Files\PlayerVsAI</Filter>
+      <Filter>Source Files\Game\PlayerVsAI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerVsAIModel.cpp">
-      <Filter>Source Files\PlayerVsAI</Filter>
+      <Filter>Source Files\Game\PlayerVsAI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerVsAIButton.cpp">
       <Filter>Source Files\Menu\Buttons</Filter>
     </ClCompile>
     <ClCompile Include="PVPEventManager.cpp">
-      <Filter>Source Files\PlayerVsPlayer</Filter>
+      <Filter>Source Files\Game\PVP</Filter>
     </ClCompile>
     <ClCompile Include="PVPModel.cpp">
-      <Filter>Source Files\PlayerVsPlayer</Filter>
+      <Filter>Source Files\Game\PVP</Filter>
     </ClCompile>
     <ClCompile Include="Arbiter.cpp">
-      <Filter>Source Files\Arbiter</Filter>
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Source Files\Game\PlayerVsAI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,10 +102,10 @@
       <Filter>Header Files\Menu</Filter>
     </ClInclude>
     <ClInclude Include="PlayerVsAIEventManager.h">
-      <Filter>Header Files\PlayerVsAI</Filter>
+      <Filter>Header Files\Game\PlayerVsAI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerVsAIModel.h">
-      <Filter>Header Files\PlayerVsAI</Filter>
+      <Filter>Header Files\Game\PlayerVsAI</Filter>
     </ClInclude>
     <ClInclude Include="EventManager.h">
       <Filter>Header Files\Common</Filter>
@@ -119,22 +128,20 @@
     <ClInclude Include="PlayerVsAIButton.h">
       <Filter>Header Files\Menu\Buttons</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PVPEventManager.h">
-      <Filter>Header Files\PVP</Filter>
+      <Filter>Header Files\Game\PVP</Filter>
     </ClInclude>
     <ClInclude Include="PVPModel.h">
-      <Filter>Header Files\PVP</Filter>
+      <Filter>Header Files\Game\PVP</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Arbiter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="grille.gif">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <ClInclude Include="AI.h">
+      <Filter>Header Files\Game\PlayerVsAI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

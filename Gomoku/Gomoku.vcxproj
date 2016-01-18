@@ -141,10 +141,12 @@ xcopy "$(SolutionDir)Images\*" "$(TargetDir)Images" /Y /D</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Arbiter.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ExitButton.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuEventManager.cpp" />
     <ClCompile Include="MenuModel.cpp" />
@@ -156,11 +158,13 @@ xcopy "$(SolutionDir)Images\*" "$(TargetDir)Images" /Y /D</Command>
     <ClCompile Include="PVPModel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="Arbiter.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="ExitButton.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="MenuEventManager.h" />
     <ClInclude Include="MenuModel.h" />
     <ClInclude Include="Model.h" />
@@ -170,10 +174,6 @@ xcopy "$(SolutionDir)Images\*" "$(TargetDir)Images" /Y /D</Command>
     <ClInclude Include="PlayerVsPlayerButton.h" />
     <ClInclude Include="PVPEventManager.h" />
     <ClInclude Include="PVPModel.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="grille.gif" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

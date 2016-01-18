@@ -7,7 +7,7 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 
 	/* SETTING GRID */
 
-	memset(_grid, 0, squareNumber * squareNumber);
+	_grid = new Grid();
 
 	/* SETTING GRID RECT */
 
@@ -47,10 +47,7 @@ bool PVPModel::Clicked(float x, float y)
 
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
-		std::cout << X << " : " << Y << std::endl;
-		std::cout << "1" << std::endl;
-		_grid[X][Y] = 1;
-		std::cout << "2" << std::endl;
+		_grid->addPawn(X, Y, Grid::BLACK);
 	}
 	return true;
 }
@@ -59,11 +56,12 @@ void PVPModel::Display(sf::RenderWindow *window)
 {
 	window->clear();
 	window->draw(_gridBackground);
-	for (unsigned int y = 0; y < squareNumber; y++)
+	std::cout << "Drawing" << std::endl;
+	for (unsigned int y = 0; y < _grid->getSideSize(); y++)
 	{
-		for (unsigned int x = 0; x < squareNumber; x++)
+		for (unsigned int x = 0; x < _grid->getSideSize(); x++)
 		{
-			if (_grid[x][y] == 1)
+			if (_grid->getCell(x, y) == Grid::BLACK)
 			{
 				_pawnsSprites[0].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
 				window->draw(_pawnsSprites[0]);

@@ -10,12 +10,12 @@ unsigned int Grid::getSideSize()
 	return (squareNumber);
 }
 
-void Grid::addPawn(int x, int y, char color)
+void Grid::addPawn(char x, char y, PlayerColor color)
 {
 	_grid[x][y] = color;
 }
 
-int Grid::getCell(int x, int y)
+int Grid::getCell(char x, char y)
 {
 	return (_grid[x][y]);
 }

@@ -45,7 +45,7 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
 		std::cout << X << " : " << Y << std::endl;
-		_grid->addPawn(X, Y, '1');
+		_grid->addPawn(X, Y, Grid::BLACK);
 	}
 	return true;
 }

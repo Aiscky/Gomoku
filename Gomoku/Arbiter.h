@@ -10,6 +10,6 @@ private:
 
 public:
 	~Arbiter();
-	static bool CheckPlayable(bool currentPlayer, std::vector<std::string> grid, sf::Vector2u xy);
+	static bool CheckPlayable(bool currentPlayer, char** grid, sf::Vector2u xy);
 };
 

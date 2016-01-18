@@ -35,10 +35,10 @@ bool PVPEventManager::HandleEvent()
 			{
 			case sf::Mouse::Left:
 				((PVPModel*)_model)->Clicked(event.mouseButton.x, event.mouseButton.y);
+				_model->Display(_window);
 				break;
 			}
 		}
-		_model->Display(_window);
 	}
 
 	return false;

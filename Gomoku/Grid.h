@@ -1,5 +1,4 @@
-#ifndef GRID_H
-# define GRID_H
+#pragma once
 
 #include "GameEngine.h"
 
@@ -11,12 +10,13 @@ public:
 	
 	enum PlayerColor
 	{
+		NONE,
 		BLACK,
 		WHITE
 	};
 
 	void addPawn(char x, char y, PlayerColor color);
-	int getCell(char x, char y);
+	char getCell(char x, char y);
 	unsigned int getSideSize();
 	void affGrid();
 
@@ -37,4 +37,3 @@ private:
 	t_searchspace _searchSpace;
 };
 
-#endif

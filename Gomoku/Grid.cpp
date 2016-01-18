@@ -2,7 +2,7 @@
 
 Grid::Grid()
 {
-	memset(_grid, '0', squareNumber * squareNumber);
+	memset(_grid, 0, squareNumber * squareNumber);
 }
 
 unsigned int Grid::getSideSize()
@@ -15,7 +15,7 @@ void Grid::addPawn(char x, char y, PlayerColor color)
 	_grid[x][y] = color;
 }
 
-int Grid::getCell(char x, char y)
+char Grid::getCell(char x, char y)
 {
 	return (_grid[x][y]);
 }

@@ -18,23 +18,96 @@ unsigned char Grid::getSideSize()
 
 void Grid::addPawn(char x, char y, PlayerColor color)
 {
-	_grid[x][y] = color;
+	_grid[y][x] = color;
 	if (x - 1 < _searchSpace.left)
 		_searchSpace.left = (x - 1 < 0 ? 0 : x - 1);
 	if (y - 1 < _searchSpace.top)
 		_searchSpace.top = (y - 1 < 0 ? 0 : y - 1);
-	if (x + 1 < _searchSpace.right)
+	if (x + 1 > _searchSpace.right)
 		_searchSpace.right = (x + 1 > squareNumber - 1 ? squareNumber - 1 : x + 1);
-	if (y + 1 < _searchSpace.bottom)
+	if (y + 1 > _searchSpace.bottom)
 		_searchSpace.bottom = (y + 1 > squareNumber - 1 ? squareNumber - 1 : y + 1);
+}
+
+void Grid::deletePawn(char x, char y)
+{
+	_grid[y][x] = 0;
+	if (x == _searchSpace.left + 1)
+	{
+		_searchSpace.left += 1;
+		for (char i = 0; i < squareNumber - 1; i++)
+		{
+			if (_grid[i][x] != 0)
+			{
+				_searchSpace.left -= 1;
+				break;
+			}
+		}
+	}
+	if (x == _searchSpace.right - 1)
+	{
+		_searchSpace.right -= 1;
+		for (char i = 0; i < squareNumber - 1; i++)
+		{
+			if (_grid[i][x] != 0)
+			{
+				_searchSpace.right += 1;
+				break;
+			}
+		}
+	}
+	if (y == _searchSpace.top + 1)
+	{
+		_searchSpace.top += 1;
+		for (char i = 0; i < squareNumber - 1; i++)
+		{
+			if (_grid[y][i] != 0)
+			{
+				_searchSpace.top -= 1;
+				break;
+			}
+		}
+	}
+	if (y == _searchSpace.bottom - 1)
+	{
+		_searchSpace.bottom -= 1;
+		for (char i = 0; i < squareNumber - 1; i++)
+		{
+			if (_grid[y][i] != 0)
+			{
+				_searchSpace.bottom += 1;
+				break;
+			}
+		}
+	}
 }
 
 char Grid::getCell(char x, char y)
 {
-	return (_grid[x][y]);
+	return (_grid[y][x]);
 }
 
-/* void Grid::affGrid()
+char Grid::getLeft()
+{
+	return (_searchSpace.left);
+}
+
+char Grid::getRight()
+{
+	return (_searchSpace.right);
+}
+
+char Grid::getTop()
+{
+	return (_searchSpace.top);
+}
+
+char Grid::getBottom()
+{
+	return (_searchSpace.bottom);
+}
+
+void Grid::affGrid()
 {
 	for (unsigned char y = 0; y < squareNumber; y++)
 	{
@@ -44,4 +117,4 @@ char Grid::getCell(char x, char y)
 		}
 		std::cout << std::endl;
 	}
-} */
+}

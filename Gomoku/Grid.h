@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameEngine.h"
+#include <iostream>
 
 class Grid
 {
@@ -10,9 +10,9 @@ public:
 	
 	enum PlayerColor
 	{
-		NONE,
-		BLACK,
-		WHITE
+		NONE = 0,
+		BLACK = 1,
+		WHITE = 2
 	};
 
 	void addPawn(char x, char y, PlayerColor color);

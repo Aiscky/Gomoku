@@ -1,7 +1,7 @@
 #pragma once
 #include "Model.h"
 #include "GameEngine.h"
-#include "Grid.h"
+#include "Arbiter.h"
 
 class Grid;
 
@@ -15,7 +15,7 @@ private:
 
 	Grid *_grid;
 
-	bool _playerTurn;
+	Grid::PlayerColor _playerTurn;
 	bool _winningStates[2];
 
 	sf::Texture _pawnsTexture[2];

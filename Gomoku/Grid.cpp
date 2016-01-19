@@ -26,7 +26,7 @@ void Grid::affGrid()
 	{
 		for (unsigned char x = 0; x < squareNumber; x++)
 		{
-			std::cout << _grid[x][y];
+			std::cout << (int)_grid[x][y];
 		}
 		std::cout << std::endl;
 	}

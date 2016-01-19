@@ -15,12 +15,17 @@ MenuModel::MenuModel(sf::RenderWindow *window, EventManager **eventManager)
 	this->_window = window;
 	this->_index = 0;
 
+	_menuBackgroundTexture.loadFromFile("Images/wood_background.bmp");
+	_menuBackground.setTexture(_menuBackgroundTexture);
+	_menuBackground.setPosition(0, 0);
+	
 	this->Init();
 }
 
 void MenuModel::Display(sf::RenderWindow *window)
 {
 	_window->clear();
+	window->draw(_menuBackground);
 	OutputDebugString("Display function\n");
 	for (size_t i = 0; i != _buttonList.size(); i++)
 	{

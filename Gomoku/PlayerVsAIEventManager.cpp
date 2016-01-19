@@ -29,8 +29,8 @@ bool PlayerVsAIEventManager::HandleEvent()
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				exit(EXIT_SUCCESS);
-				break;
+				((PlayerVsAIModel *)this->_model)->BackToMenu();
+				return true;
 			}
 		}
 		_model->Display(_window);

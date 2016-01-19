@@ -75,3 +75,10 @@ void PVPModel::Display(sf::RenderWindow *window)
 	}
 	window->display();
 }
+
+bool PVPModel::BackToMenu()
+{
+	delete (*_eventManagerAddr);
+	(*_eventManagerAddr) = new MenuEventManager(_window, _eventManagerAddr);
+	return true;
+}

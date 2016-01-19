@@ -18,7 +18,7 @@ public:
 	void addPawn(char x, char y, PlayerColor color);
 	char getCell(char x, char y);
 	unsigned char getSideSize();
-	void affGrid();
+	//void affGrid();
 
 private:
 

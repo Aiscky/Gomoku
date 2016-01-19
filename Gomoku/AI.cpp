@@ -8,8 +8,8 @@ AI::AI(Grid *grid)
 
 void AI::play()
 {
-	eval();
-	minmax();
+//	eval();
+//	minmax();
 	static int x = 10;
 	int y = 9;
 	_grid->addPawn(x, y, Grid::BLACK);

@@ -15,7 +15,7 @@ MenuModel::MenuModel(sf::RenderWindow *window, EventManager **eventManager)
 	this->_window = window;
 	this->_index = 0;
 
-	_menuBackgroundTexture.loadFromFile("Images/wood_background.bmp");
+	_menuBackgroundTexture.loadFromFile("Images/Goban.bmp");
 	_menuBackground.setTexture(_menuBackgroundTexture);
 	_menuBackground.setPosition(0, 0);
 	

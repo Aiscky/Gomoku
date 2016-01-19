@@ -5,13 +5,9 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 	_window = window;
 	_eventManagerAddr = eventManagerAddr;
 
-	/* INSTANCNG GRID */
+	/* CREATING GRID */
 
 	_grid = new Grid();
-
-	/* CREATING AI */
-
-	//_bot = AI(_grid);
 
 	/* SETTING GRID RECT */
 
@@ -37,6 +33,11 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 
 	_winningStates[0] = false;
 	_winningStates[1] = false;
+
+	/* CREATING AI */
+
+	_bot = new AI(_grid);
+
 }
 
 bool PlayerVsAIModel::Clicked(float x, float y)
@@ -49,7 +50,8 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
 		std::cout << X << " : " << Y << std::endl;
-		_grid->addPawn(X, Y, Grid::BLACK);
+		_grid->addPawn(X, Y, Grid::WHITE);
+		_bot->play();
 	}
 	return true;
 }

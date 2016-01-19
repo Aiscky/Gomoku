@@ -10,7 +10,6 @@ private:
 	Grid *_grid;
 
 public:
-	AI();
 	AI(Grid *grid);
 	~AI() {};
 	void play();

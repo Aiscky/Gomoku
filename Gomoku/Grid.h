@@ -17,12 +17,12 @@ public:
 
 	void addPawn(char x, char y, PlayerColor color);
 	char getCell(char x, char y);
-	unsigned int getSideSize();
-	//void affGrid();
+	unsigned char getSideSize();
+	void affGrid();
 
 private:
 
-	const static unsigned int squareNumber = 19;
+	const static unsigned char squareNumber = 19;
 	char _grid[squareNumber][squareNumber];
 	char _playersPawnsLeft[2];
 	char _playersPawnsCaptured[2];

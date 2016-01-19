@@ -57,9 +57,9 @@ void PVPModel::Display(sf::RenderWindow *window)
 	window->clear();
 	window->draw(_gridBackground);
 	std::cout << "Drawing" << std::endl;
-	for (unsigned int y = 0; y < _grid->getSideSize(); y++)
+	for (unsigned char y = 0; y < _grid->getSideSize(); y++)
 	{
-		for (unsigned int x = 0; x < _grid->getSideSize(); x++)
+		for (unsigned char x = 0; x < _grid->getSideSize(); x++)
 		{
 			if (_grid->getCell(x, y) == Grid::BLACK)
 			{

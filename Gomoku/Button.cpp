@@ -23,7 +23,7 @@ Button::Button(sf::Color idleColor,
 	//TODO set text content,
 	//TODO Make a font manager
 
-	if (!_buttonFont.loadFromFile("Fonts/Track.ttf"))
+	if (!_buttonFont.loadFromFile("Fonts/BLACKJAR.TTF"))
 	{
 		char *error = (char *)malloc(265);
 
@@ -36,8 +36,8 @@ Button::Button(sf::Color idleColor,
 
 	_buttonContent.setFont(_buttonFont);
 	_buttonContent.setString(buttonContent);
-	_buttonContent.setColor(sf::Color::White);	
-	_buttonContent.setCharacterSize(20);
+	_buttonContent.setColor(sf::Color::Black);	
+	_buttonContent.setCharacterSize(50);
 	centerTextInBackground();
 }
 

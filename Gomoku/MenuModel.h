@@ -15,6 +15,8 @@ class MenuModel : public Model
 {
 
 private:
+	sf::Texture _menuBackgroundTexture;
+	sf::Sprite _menuBackground;
 	std::vector<Button *> _buttonList;
 	EventManager **_eventManagerAddr;
 	sf::RenderWindow *_window;

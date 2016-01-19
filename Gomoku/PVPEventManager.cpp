@@ -25,8 +25,8 @@ bool PVPEventManager::HandleEvent()
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				exit(EXIT_SUCCESS);
-				break;
+				((PVPModel *)this->_model)->BackToMenu();
+				return true;
 			}
 		}
 		if (event.type == sf::Event::MouseButtonPressed)

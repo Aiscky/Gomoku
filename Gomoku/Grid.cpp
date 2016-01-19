@@ -40,7 +40,7 @@ char Grid::getCell(char x, char y)
 	{
 		for (unsigned char x = 0; x < squareNumber; x++)
 		{
-			std::cout << _grid[x][y];
+			std::cout << (int)_grid[x][y];
 		}
 		std::cout << std::endl;
 	}

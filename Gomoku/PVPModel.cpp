@@ -31,7 +31,7 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 	_pawnsSprites[0].setTexture(_pawnsTexture[0]);
 	_pawnsSprites[1].setTexture(_pawnsTexture[1]);
 
-	_playerTurn = false;
+	_playerTurn = Grid::BLACK;
 	_winningStates[0] = false;
 	_winningStates[1] = false;
 }
@@ -45,9 +45,14 @@ bool PVPModel::Clicked(float x, float y)
 		int X;
 		int Y;
 
+
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
-		_grid->addPawn(X, Y, Grid::BLACK);
+		if (Arbiter::CheckPlayable(_playerTurn, _grid, X, Y))
+		{
+			std::cout << "PAWN VALUE : " << (int)Grid::BLACK << std::endl;
+			_grid->addPawn(X, Y, Grid::BLACK);
+		}
 	}
 	return true;
 }
@@ -57,9 +62,9 @@ void PVPModel::Display(sf::RenderWindow *window)
 	window->clear();
 	window->draw(_gridBackground);
 	std::cout << "Drawing" << std::endl;
-	for (unsigned char y = 0; y < _grid->getSideSize(); y++)
+	for (unsigned char x = 0; x < _grid->getSideSize(); x++)
 	{
-		for (unsigned char x = 0; x < _grid->getSideSize(); x++)
+		for (unsigned char y = 0; y < _grid->getSideSize(); y++)
 		{
 			if (_grid->getCell(x, y) == Grid::BLACK)
 			{

@@ -25,6 +25,7 @@ private:
 
 	sf::RenderWindow *_window;
 	EventManager **_eventManagerAddr;
+	Arbiter _arbiter;
 
 public:
 	PVPModel(sf::RenderWindow *, EventManager **);

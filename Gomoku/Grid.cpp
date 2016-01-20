@@ -87,6 +87,15 @@ char Grid::getCell(char x, char y)
 	return (_grid[y][x]);
 }
 
+bool Grid::isCellEmpty(char x, char y)
+{
+	if (_grid[y][x] == NONE)
+	{
+		return true;
+	}
+	return false;
+}
+
 char Grid::getLeft()
 {
 	return (_searchSpace.left);
@@ -117,4 +126,14 @@ void Grid::affGrid()
 		}
 		std::cout << std::endl;
 	}
+}
+
+Grid::PlayerColor Grid::getOpponentColor(Grid::PlayerColor playerColor)
+{
+	if (playerColor == Grid::WHITE)
+		return Grid::BLACK;
+	else if (playerColor == Grid::BLACK)
+		return Grid::WHITE;
+	else
+		return Grid::NONE;
 }

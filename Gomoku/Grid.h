@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 class Grid
 {
@@ -9,7 +10,14 @@ private:
 	const static unsigned char squareNumber = 19;
 	char _grid[squareNumber][squareNumber];
 	char _playersPawnsLeft[2];
-	char _playersPawnsCaptured[2];
+	char _playersPairsCaptured[2];
+
+	typedef struct s_3PFreeLine {
+		char start[2];
+		char end[2];
+	} t_3PFreeline;
+
+	std::vector<t_3PFreeline> _3PFreeLines;
 
 	typedef struct s_searchSpace {
 		char top;
@@ -33,12 +41,14 @@ public:
 
 	void addPawn(char x, char y, PlayerColor color);
 	void deletePawn(char x, char y);
+	bool isCellEmpty(char x, char y);
 	char getCell(char x, char y);
 	unsigned char getSideSize();
 	char getLeft();
 	char getRight();
 	char getTop();
 	char getBottom();
+	PlayerColor getOpponentColor(PlayerColor playerColor);
 	void affGrid();
 
 };

@@ -60,7 +60,6 @@ bool Arbiter::isAdjacentToExistingPawn()
 			}
 		}
 	}
-
 	return false;
 }
 

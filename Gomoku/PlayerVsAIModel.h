@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "AI.h"
 #include "GameEngine.h"
+#include "Arbiter.h"
 
 class Grid;
 class AI;
@@ -26,6 +27,7 @@ private:
 
 	sf::RenderWindow *_window;
 	EventManager **_eventManagerAddr;
+	Arbiter _arbiter;
 
 public:
 	PlayerVsAIModel(sf::RenderWindow *, EventManager **);

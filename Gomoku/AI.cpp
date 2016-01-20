@@ -17,11 +17,10 @@ void AI::play()
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
-			if (_grid->getCell(x, y) == 0)
+			if (_grid->getCell(x, y) == 0 && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
 				int tmp = Min(depth - 1);
-				// std::cout << "Max = " << (int)y << ":" << (int)x << " -  " << tmp << std::endl;
 				if (tmp > max)
 				{
 					max = tmp;
@@ -45,7 +44,7 @@ int AI::Min(int depth)
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
-			if (_grid->getCell(x, y) == 0)
+			if (_grid->getCell(x, y) == 0 && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::WHITE);
 				int tmp = Max(depth - 1);
@@ -67,7 +66,7 @@ int AI::Max(int depth)
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
-			if (_grid->getCell(x, y) == 0)
+			if (_grid->getCell(x, y) == 0 && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
 				int tmp = Min(depth - 1);
@@ -134,14 +133,14 @@ void AI::getSeries()
 				{
 					if (_grid->getCell(x - 4, y) == 0 && _grid->getCell(x + 1, y) == 0)
 						_value += 50;
-					else if (_grid->getCell(x - 4, y) == 0 || _grid->getCell(x + 1, y) == 0)
+					else if (_grid->getCell(x - 4, y) == 0 && _grid->getCell(x - 5, y) == 0
+						|| _grid->getCell(x + 1, y) == 0 && _grid->getCell(x + 2, y) == 0)
 						_value += 10;
 				}
-				else if (black == 2)
+				else if (black == 2 && _grid->getCell(x + 1, y) == 0 && _grid->getCell(x + 2, y) == 0 && _grid->getCell(x + 3, y) == 0)
 				{
 					_value += 1;
 				}
-
 			}
 			else
 			{
@@ -174,9 +173,7 @@ void AI::getSeries()
 				{
 					if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y + 1) == 0)
 						_value -= 50;
-
 				}
-
 			}
 			else if (_grid->getCell(x, y) == Grid::BLACK)
 			{
@@ -195,10 +192,11 @@ void AI::getSeries()
 				{
 					if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y + 1) == 0)
 						_value += 50;
-					else if (_grid->getCell(x, y - 4) == 0 || _grid->getCell(x, y + 1) == 0)
+					else if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y - 5) == 0 
+							|| _grid->getCell(x, y + 1) == 0 && _grid->getCell(x, y + 2) == 0)
 						_value += 10;
 				}
-				else if (black == 2)
+				else if (black == 2 && _grid->getCell(x, y + 1) == 0 && _grid->getCell(x, y + 2) == 0 && _grid->getCell(x, y + 3) == 0)
 				{
 					_value += 1;
 				}
@@ -211,4 +209,3 @@ void AI::getSeries()
 		}
 	}
 }
-

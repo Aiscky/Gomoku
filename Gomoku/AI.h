@@ -11,6 +11,7 @@ private:
 	Grid *_grid;
 	int _alpha;
 	int _beta;
+	int _value;
 
 public:
 	AI(Grid *grid);
@@ -19,5 +20,6 @@ public:
 	int Min(int);
 	int Max(int);
 	int Eval();
+	void getSeries();
 };
 

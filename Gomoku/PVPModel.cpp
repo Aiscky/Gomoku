@@ -45,10 +45,9 @@ bool PVPModel::Clicked(float x, float y)
 		int X;
 		int Y;
 
-
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
-		if (Arbiter::CheckPlayable(_playerTurn, _grid, X, Y))
+		if (_arbiter.CheckPlayable(_playerTurn, _grid, X, Y))
 		{
 			std::cout << "PAWN VALUE : " << (int)Grid::BLACK << std::endl;
 			_grid->addPawn(X, Y, Grid::BLACK);
@@ -73,6 +72,7 @@ void PVPModel::Display(sf::RenderWindow *window)
 			}
 		}
 	}
+
 	window->display();
 }
 

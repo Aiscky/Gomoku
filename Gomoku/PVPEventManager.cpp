@@ -16,7 +16,7 @@ PVPEventManager::~PVPEventManager()
 bool PVPEventManager::HandleEvent()
 {
 	sf::Event event;
-	while ((*_window).pollEvent(event))
+	while ((*_window).waitEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			(*_window).close();

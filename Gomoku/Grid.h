@@ -7,7 +7,6 @@ class Grid
 
 private:
 	const static unsigned char squareNumber = 19;
-	char _grid[squareNumber][squareNumber];
 	char _playersPawnsLeft[2];
 	char _playersPawnsCaptured[2];
 
@@ -31,6 +30,7 @@ public:
 		WHITE = 2
 	};
 
+	char _grid[squareNumber][squareNumber];
 	void addPawn(char x, char y, PlayerColor color);
 	void deletePawn(char x, char y);
 	char getCell(char x, char y);

@@ -113,7 +113,7 @@ void Grid::affGrid()
 	{
 		for (unsigned char x = 0; x < squareNumber; x++)
 		{
-			std::cout << (int)_grid[x][y];
+			std::cout << (int)_grid[y][x];
 		}
 		std::cout << std::endl;
 	}

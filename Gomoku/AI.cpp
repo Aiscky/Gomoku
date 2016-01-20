@@ -95,64 +95,120 @@ void AI::getSeries()
 	for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 	{
 		int white = 0;
+		int black = 0;
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
 			if (_grid->getCell(x, y) == Grid::WHITE)
 			{
 				white++;
-				if (white == 3)
-					_value -= 50;
+				black = 0;
+				if (white == 5)
+					_value -= 1000;
+				else if (white == 4)
+				{
+					if (_grid->getCell(x - 5, y) == 0 && _grid->getCell(x + 1, y) == 0)
+						_value -= 400;
+					else if (_grid->getCell(x - 5, y) == 0 || _grid->getCell(x + 1, y) == 0)
+						_value -= 100;
+				}
+				else if (white == 3)
+				{
+					if (_grid->getCell(x - 4, y) == 0 && _grid->getCell(x + 1, y) == 0)
+						_value -= 50;
+				}
+			}
+			else if (_grid->getCell(x, y) == Grid::BLACK)
+			{
+				white = 0;
+				black++;
+				if (black == 5)
+					_value += 1000;
+				else if (black == 4)
+				{
+					if (_grid->getCell(x - 5, y) == 0 && _grid->getCell(x + 1, y) == 0)
+						_value += 400;
+					else if (_grid->getCell(x - 5, y) == 0 || _grid->getCell(x + 1, y) == 0)
+						_value += 100;
+				}
+				else if (black == 3)
+				{
+					if (_grid->getCell(x - 4, y) == 0 && _grid->getCell(x + 1, y) == 0)
+						_value += 50;
+					else if (_grid->getCell(x - 4, y) == 0 || _grid->getCell(x + 1, y) == 0)
+						_value += 10;
+				}
+				else if (black == 2)
+				{
+					_value += 1;
+				}
+
 			}
 			else
+			{
 				white = 0;
+				black = 0;
+			}
+		}
+	}
+	// En Colonne
+	for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
+	{
+		int white = 0;
+		int black = 0;
+		for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
+		{
+			if (_grid->getCell(x, y) == Grid::WHITE)
+			{
+				black = 0;
+				white++;
+				if (white == 5)
+					_value -= 1000;
+				else if (white == 4)
+				{
+					if (_grid->getCell(x, y - 5) == 0 && _grid->getCell(x, y + 1) == 0)
+						_value -= 400;
+					else if (_grid->getCell(x, y - 5) == 0 || _grid->getCell(x, y + 1) == 0)
+						_value -= 100;
+				}
+				else if (white == 3)
+				{
+					if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y + 1) == 0)
+						_value -= 50;
+
+				}
+
+			}
+			else if (_grid->getCell(x, y) == Grid::BLACK)
+			{
+				white = 0;
+				black++;
+				if (black == 5)
+					_value += 1000;
+				else if (black == 4)
+				{
+					if (_grid->getCell(x, y - 5) == 0 && _grid->getCell(x, y + 1) == 0)
+						_value += 400;
+					else if (_grid->getCell(x, y - 5) == 0 || _grid->getCell(x, y + 1) == 0)
+						_value += 100;
+				}
+				else if (black == 3)
+				{
+					if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y + 1) == 0)
+						_value += 50;
+					else if (_grid->getCell(x, y - 4) == 0 || _grid->getCell(x, y + 1) == 0)
+						_value += 10;
+				}
+				else if (black == 2)
+				{
+					_value += 1;
+				}
+			}
+			else
+			{
+				white = 0;
+				black = 0;
+			}
 		}
 	}
 }
 
-/*
-			else if (_grid->getCell(x, y) == Grid::BLACK)
-			{
-				black++;
-				white = 0;
-				if (black == 3)
-					_value += 50;
-			}
-			else
-			{
-				black = 0;
-				white = 0;
-			}
-		}	
-	}
-	//En Colonne;
-	for (char x = _grid->getTop(); x <= _grid->getBottom(); x++)
-	{
-		black = 0;
-		white = 0;
-		for (char y = _grid->getLeft(); y <= _grid->getRight(); y++)
-		{
-			if (_grid->getCell(x, y) == Grid::WHITE)
-			{
-				white++;
-				black = 0;
-				if (white == 3)
-					_value += 50;
-				if (white == 4)
-					_value += 100;
-			}
-			else if (_grid->getCell(x, y) == Grid::BLACK)
-			{
-				black++;
-				white = 0;
-				if (black == 3)
-					_value += 50;
-			}
-			else
-			{
-				black = 0;
-				white = 0;
-			}
-		}
-	}
-}
-*/

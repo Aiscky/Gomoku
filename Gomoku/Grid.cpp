@@ -84,6 +84,8 @@ void Grid::deletePawn(char x, char y)
 
 char Grid::getCell(char x, char y)
 {
+	if (x < 0 || x > 18 || y < 0 || y > 18)
+		return (3);
 	return (_grid[y][x]);
 }
 

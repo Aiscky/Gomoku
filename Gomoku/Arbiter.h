@@ -76,7 +76,6 @@ public:
 	bool CheckFreeCrossingLinesForCell(char cellX, char cellY, t_orientation orientationCoefficient);
 	bool CheckSideFreeCrossingLines(t_orientation orientationCoefficient);
 
-	//static bool CheckFreeLineHorizontal(Grid::PlayerColor currentPlayer, Grid *grid, char x, char y);
-	//static bool CheckFreeLineVertical(Grid::PlayerColor currentPlayer, Grid *grid, char x, char y);
+	t_orientation getOrientationCoefficientOpposite(t_orientation orientationCoefficient);
 };
 

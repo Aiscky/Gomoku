@@ -32,6 +32,7 @@ public:
 	~PVPModel() {};
 	void Display(sf::RenderWindow *window);
 	bool Clicked(float x, float y);
+	void ChangePlayerTurn();
 	bool BackToMenu();
 };
 

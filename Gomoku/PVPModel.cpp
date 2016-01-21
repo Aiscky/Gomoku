@@ -31,7 +31,7 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 	_pawnsSprites[0].setTexture(_pawnsTexture[0]);
 	_pawnsSprites[1].setTexture(_pawnsTexture[1]);
 
-	_playerTurn = Grid::BLACK;
+	_playerTurn = Grid::WHITE;
 	_winningStates[0] = false;
 	_winningStates[1] = false;
 }
@@ -50,14 +50,24 @@ bool PVPModel::Clicked(float x, float y)
 		if (_arbiter.CheckPlayable(_playerTurn, _grid, X, Y))
 		{
 			std::cout << "PAWN VALUE : " << (int)Grid::BLACK << std::endl;
-			_grid->addPawn(X, Y, Grid::BLACK);
+			_grid->addPawn(X, Y, _playerTurn);
+			ChangePlayerTurn();
 		}
 	}
 	return true;
 }
 
+void PVPModel::ChangePlayerTurn()
+{
+	std::cout << _playerTurn << std::endl;
+	_playerTurn = _grid->getOpponentColor(_playerTurn);
+	std::cout << _playerTurn << std::endl;
+}
+
 void PVPModel::Display(sf::RenderWindow *window)
 {
+	Grid::PlayerColor cellPlayerColor;
+
 	window->clear();
 	window->draw(_gridBackground);
 	std::cout << "Drawing" << std::endl;
@@ -65,10 +75,17 @@ void PVPModel::Display(sf::RenderWindow *window)
 	{
 		for (unsigned char y = 0; y < _grid->getSideSize(); y++)
 		{
-			if (_grid->getCell(x, y) == Grid::BLACK)
+			cellPlayerColor = (Grid::PlayerColor)_grid->getCell(x, y);
+
+			if (cellPlayerColor == Grid::BLACK)
 			{
 				_pawnsSprites[0].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
 				window->draw(_pawnsSprites[0]);
+			}
+			if (cellPlayerColor == Grid::WHITE)
+			{
+				_pawnsSprites[1].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
+				window->draw(_pawnsSprites[1]);
 			}
 		}
 	}

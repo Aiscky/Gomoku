@@ -1,4 +1,4 @@
- #include "Arbiter.h"
+#include "Arbiter.h"
 
 Arbiter::Arbiter()
 {
@@ -47,7 +47,7 @@ bool Arbiter::isAdjacentToExistingPawn()
 	{
 		for (int j = -1; j <= 1; ++j)
 		{
-			if (!(i == 0 && j == 0) && 
+			if (!(i == 0 && j == 0) &&
 				selectedPawnX + i >= 0 &&
 				selectedPawnX + i < grid->getSideSize() &&
 				selectedPawnY + j >= 0 &&
@@ -150,7 +150,7 @@ void Arbiter::UpdateCountAndFlagsFromCell(char cellX, char cellY)
 		lastCellEmpty = true;
 }
 
-bool Arbiter::CheckFreeCrossingLinesForLine(char startingCellX, char startingCellY, t_orientation orientationCoefficient) 
+bool Arbiter::CheckFreeCrossingLinesForLine(char startingCellX, char startingCellY, t_orientation orientationCoefficient)
 {
 	if (CheckFreeCrossingLinesForLineSide(startingCellX, startingCellY, orientationCoefficient, Arbiter::NORMAL) ||
 		CheckFreeCrossingLinesForLineSide(startingCellX - orientationCoefficient.x, startingCellY - orientationCoefficient.y, orientationCoefficient, Arbiter::OPPOSITE))

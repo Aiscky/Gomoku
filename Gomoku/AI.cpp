@@ -85,13 +85,15 @@ int AI::Max(int depth)
 int AI::Eval()
 {
 	int value = 0;
+	int white = 0;
+	int black = 0;
 
 	// EN LIGNE
 
 	for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 	{
-		int white = 0;
-		int black = 0;
+		white = 0;
+		black = 0;
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
 			// ALIGNEMENT DE WHITE
@@ -162,8 +164,8 @@ int AI::Eval()
 
 	for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 	{
-		int white = 0;
-		int black = 0;
+		white = 0;
+		black = 0;
 		for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 		{
 			// ALIGNEMENT DE WHITE
@@ -230,14 +232,169 @@ int AI::Eval()
 		}
 	}
 
-	// EN DIAG -> Y = X
-	char x = _grid->getLeft();
-	char y = _grid->getTop();
-	while (x < _grid->getRight())
-	{
+	// EN DIAG MONTANTE
 
+	char Y = _grid->getTop();
+	char X = _grid->getLeft();
+	while (X < _grid->getRight())
+	{
+		black = 0;
+		white = 0;
+		char x = X;
+		char y = Y;
+		while (_grid->getCell(x, y) != Grid::EDGE)
+		{
+			// ALIGNEMENT DE WHITE
+			if (_grid->getCell(x, y) == Grid::WHITE)
+			{
+				black = 0;
+				white++;
+				if (white == 5)
+					value -= 1000;
+				else if (white == 4)
+				{
+					if (_grid->getCell(x - 4, y + 4) == Grid::NONE && _grid->getCell(x + 1, y - 1) == Grid::NONE)
+						value -= 400;
+					else if (_grid->getCell(x - 4, y + 4) == Grid::NONE || _grid->getCell(x + 1, y - 1) == Grid::NONE)
+						value -= 100;
+				}
+				else if (white == 3)
+				{
+					if (_grid->getCell(x - 3, y + 3) == Grid::NONE && _grid->getCell(x + 1, y - 1) == Grid::NONE)
+						value -= 50;
+				}
+			}
+			// ALIGNEMENT DE BLACK
+			else if (_grid->getCell(x, y) == Grid::BLACK)
+			{
+				white = 0;
+				black++;
+				if (black == 5)
+					value += 1000;
+				else if (black == 4)
+				{
+					if (_grid->getCell(x - 4, y + 4) == Grid::NONE && _grid->getCell(x + 1, y - 1) == Grid::NONE)
+						value += 400;
+					else if (_grid->getCell(x - 4, y + 4) == Grid::NONE || _grid->getCell(x + 1, y - 1) == Grid::NONE)
+						value += 100;
+				}
+				else if (black == 3)
+				{
+					if (_grid->getCell(x - 3, y + 3) == Grid::NONE && _grid->getCell(x + 1, y - 1) == Grid::NONE)
+						value += 50;
+					else if (_grid->getCell(x - 3, y + 3) == Grid::NONE && _grid->getCell(x - 4, y + 4) == Grid::NONE
+						|| _grid->getCell(x + 1, y - 1) == Grid::NONE && _grid->getCell(x + 2, y - 2) == Grid::NONE)
+						value += 10;
+				}
+				else if (black == 2)
+				{
+					if (_grid->getCell(x + 1, y - 1) == Grid::NONE && _grid->getCell(x + 2, y - 2) == Grid::NONE
+						&& (_grid->getCell(x + 3, y - 3) == Grid::NONE || _grid->getCell(x - 2, y + 2) == Grid::NONE))
+					{
+						value += 2;
+					}
+					else if (_grid->getCell(x - 2, y + 2) == Grid::NONE && _grid->getCell(x - 3, y + 3) == Grid::NONE
+						&& (_grid->getCell(x - 4, y + 4) == Grid::NONE || _grid->getCell(x + 1, y - 1) == Grid::NONE))
+					{
+						value += 2;
+					}
+				}
+			}
+			else
+			{
+				white = 0;
+				black = 0;
+			}
+			y--;
+			x++;
+		}
+		if (Y < _grid->getBottom())
+			Y++;
+		else
+			X++;
 	}
-		
+
+	// EN DIAG DESCENDANTE
+
+	char Y = _grid->getBottom();
+	char X = _grid->getLeft();
+	while (X < _grid->getRight())
+	{
+		black = 0;
+		white = 0;
+		char x = X;
+		char y = Y;
+		while (_grid->getCell(x, y) != Grid::EDGE)
+		{
+			// ALIGNEMENT DE WHITE
+			if (_grid->getCell(x, y) == Grid::WHITE)
+			{
+				black = 0;
+				white++;
+				if (white == 5)
+					value -= 1000;
+				else if (white == 4)
+				{
+					if (_grid->getCell(x - 4, y - 4) == Grid::NONE && _grid->getCell(x + 1, y + 1) == Grid::NONE)
+						value -= 400;
+					else if (_grid->getCell(x - 4, y - 4) == Grid::NONE || _grid->getCell(x + 1, y + 1) == Grid::NONE)
+						value -= 100;
+				}
+				else if (white == 3)
+				{
+					if (_grid->getCell(x - 3, y - 3) == Grid::NONE && _grid->getCell(x + 1, y + 1) == Grid::NONE)
+						value -= 50;
+				}
+			}
+			// ALIGNEMENT DE BLACK
+			else if (_grid->getCell(x, y) == Grid::BLACK)
+			{
+				white = 0;
+				black++;
+				if (black == 5)
+					value += 1000;
+				else if (black == 4)
+				{
+					if (_grid->getCell(x - 4, y - 4) == Grid::NONE && _grid->getCell(x + 1, y + 1) == Grid::NONE)
+						value += 400;
+					else if (_grid->getCell(x - 4, y - 4) == Grid::NONE || _grid->getCell(x + 1, y + 1) == Grid::NONE)
+						value += 100;
+				}
+				else if (black == 3)
+				{
+					if (_grid->getCell(x - 3, y - 3) == Grid::NONE && _grid->getCell(x + 1, y + 1) == Grid::NONE)
+						value += 50;
+					else if (_grid->getCell(x - 3, y - 3) == Grid::NONE && _grid->getCell(x - 4, y - 4) == Grid::NONE
+						|| _grid->getCell(x + 1, y + 1) == Grid::NONE && _grid->getCell(x + 2, y + 2) == Grid::NONE)
+						value += 10;
+				}
+				else if (black == 2)
+				{
+					if (_grid->getCell(x + 1, y + 1) == Grid::NONE && _grid->getCell(x + 2, y + 2) == Grid::NONE
+						&& (_grid->getCell(x + 3, y + 3) == Grid::NONE || _grid->getCell(x - 2, y - 2) == Grid::NONE))
+					{
+						value += 2;
+					}
+					else if (_grid->getCell(x - 2, y - 2) == Grid::NONE && _grid->getCell(x - 3, y - 3) == Grid::NONE
+						&& (_grid->getCell(x - 4, y - 4) == Grid::NONE || _grid->getCell(x + 1, y + 1) == Grid::NONE))
+					{
+						value += 2;
+					}
+				}
+			}
+			else
+			{
+				white = 0;
+				black = 0;
+			}
+			y++;
+			x++;
+		}
+		if (Y > _grid->getTop())
+			Y--;
+		else
+			X++;
+	}
 
 	return (value);
 }

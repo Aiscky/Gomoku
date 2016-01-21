@@ -11,7 +11,8 @@ void AI::play()
 	int depth = 2;
 	char bestX = 0;
 	char bestY = 0;
-	int max = -1000;
+	_alpha = -10000;
+	int max = _alpha;
 
 	for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 	{
@@ -21,8 +22,7 @@ void AI::play()
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
 				int tmp = Min(depth - 1);
-				std::cout << "TMP = " << tmp << std::endl;
-				if (tmp > max)
+				if (tmp >= max)
 				{
 					max = tmp;
 					bestX = x;
@@ -32,37 +32,36 @@ void AI::play()
 			}
 		}
 	}
-	std::cout << "Max = " << max << std::endl;
 	_grid->addPawn(bestX, bestY, Grid::BLACK);
 }
 
 int AI::Min(int depth)
 {
-	int min = 1000;
 	if (depth == 0)
 		return (Eval());
+	_beta = 10000;
 	for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
-			if (_grid->getCell(x, y) == Grid::NONE && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
+			if (_grid->getCell(x, y) == Grid::NONE && _arbiter.CheckPlayable(Grid::WHITE, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::WHITE);
-				int tmp = Max(depth - 1);
-				if (tmp < min)
-					min = tmp;
+				_beta = std::min(_beta, Max(depth - 1));
 				_grid->deletePawn(x, y);
+				if (_beta <= _alpha)
+					return (_alpha);
 			}
 		}
 	}
-	return (min);
+	return (_beta);
 }
 
 int AI::Max(int depth)
 {
-	int max = -1000;
 	if (depth == 0)
 		return (Eval());
+	_alpha = -10000;
 	for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
@@ -70,14 +69,13 @@ int AI::Max(int depth)
 			if (_grid->getCell(x, y) == Grid::NONE && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
-				int tmp = Min(depth - 1);
-				if (tmp > max)
-					max = tmp;
+				_alpha = std::max(_alpha, Min(depth - 1));
 				_grid->deletePawn(x, y);
+				
 			}
 		}
 	}
-	return (max);
+	return (_alpha);
 }
 
 /* EVALUATION AI */
@@ -102,7 +100,7 @@ int AI::Eval()
 				white++;
 				black = 0;
 				if (white == 5)
-					value -= 1000;
+					value -= 3000;
 				else if (white == 4)
 				{
 					if (_grid->getCell(x - 4, y) == Grid::NONE && _grid->getCell(x + 1, y) == Grid::NONE)
@@ -122,7 +120,7 @@ int AI::Eval()
 				white = 0;
 				black++;
 				if (black == 5)
-					value += 1000;
+					value += 5000;
 				else if (black == 4)
 				{
 					if (_grid->getCell(x - 4, y) == Grid::NONE && _grid->getCell(x + 1, y) == Grid::NONE)
@@ -174,7 +172,7 @@ int AI::Eval()
 				black = 0;
 				white++;
 				if (white == 5)
-					value -= 1000;
+					value -= 5000;
 				else if (white == 4)
 				{
 					if (_grid->getCell(x, y - 4) == Grid::NONE && _grid->getCell(x, y + 1) == Grid::NONE)
@@ -194,7 +192,7 @@ int AI::Eval()
 				white = 0;
 				black++;
 				if (black == 5)
-					value += 1000;
+					value += 5000;
 				else if (black == 4)
 				{
 					if (_grid->getCell(x, y - 4) == Grid::NONE && _grid->getCell(x, y + 1) == Grid::NONE)
@@ -250,7 +248,7 @@ int AI::Eval()
 				black = 0;
 				white++;
 				if (white == 5)
-					value -= 1000;
+					value -= 5000;
 				else if (white == 4)
 				{
 					if (_grid->getCell(x - 4, y + 4) == Grid::NONE && _grid->getCell(x + 1, y - 1) == Grid::NONE)
@@ -270,7 +268,7 @@ int AI::Eval()
 				white = 0;
 				black++;
 				if (black == 5)
-					value += 1000;
+					value += 5000;
 				else if (black == 4)
 				{
 					if (_grid->getCell(x - 4, y + 4) == Grid::NONE && _grid->getCell(x + 1, y - 1) == Grid::NONE)
@@ -332,7 +330,7 @@ int AI::Eval()
 				black = 0;
 				white++;
 				if (white == 5)
-					value -= 1000;
+					value -= 5000;
 				else if (white == 4)
 				{
 					if (_grid->getCell(x - 4, y - 4) == Grid::NONE && _grid->getCell(x + 1, y + 1) == Grid::NONE)
@@ -352,7 +350,7 @@ int AI::Eval()
 				white = 0;
 				black++;
 				if (black == 5)
-					value += 1000;
+					value += 5000;
 				else if (black == 4)
 				{
 					if (_grid->getCell(x - 4, y - 4) == Grid::NONE && _grid->getCell(x + 1, y + 1) == Grid::NONE)

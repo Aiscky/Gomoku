@@ -58,8 +58,6 @@ bool Arbiter::isAdjacentToExistingPawn()
 		}
 	}
 
-	//std::cout << "PAWN NOT ADJACENT" << std::endl;
-
 	return false;
 }
 
@@ -79,7 +77,6 @@ bool Arbiter::doesCreateDoubleThree()
 
 		if (CheckFreeLine(selectedPawnX, selectedPawnY, orientationCoefficients[n]))
 		{
-			//std::cout << "FOUND FREE LINE" << std::endl;
 
 			if (isAlreadyFreeLine == true)
 			{
@@ -88,7 +85,6 @@ bool Arbiter::doesCreateDoubleThree()
 			}
 			else if (CheckFreeCrossingLinesForLine(selectedPawnX, selectedPawnY, orientationCoefficients[n]))
 			{
-				std::cout << "CROSSING FREE LINE FOUND" << std::endl;
 				grid->deletePawn(selectedPawnX, selectedPawnY);
 				return true;
 			}

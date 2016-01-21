@@ -31,7 +31,7 @@ bool Arbiter::CheckPlayable(Grid::PlayerColor currentPlayer, Grid *grid, char se
 
 	if (grid->isCellEmpty(this->selectedPawnX, this->selectedPawnY) &&
 		isAdjacentToExistingPawn() &&
-		!doesCreateDoubleTree())
+		!doesCreateDoubleThree())
 	{
 		return true;
 	}
@@ -64,7 +64,7 @@ bool Arbiter::isAdjacentToExistingPawn()
 	return false;
 }
 
-bool Arbiter::doesCreateDoubleTree()
+bool Arbiter::doesCreateDoubleThree()
 {
 	/* CHECK EVERY DIRECTION AND POSSIBIBLY CROSSING LINES FOR FREELINE  */
 

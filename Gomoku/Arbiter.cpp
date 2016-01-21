@@ -48,10 +48,7 @@ bool Arbiter::isAdjacentToExistingPawn()
 		for (int j = -1; j <= 1; ++j)
 		{
 			if (!(i == 0 && j == 0) && 
-				selectedPawnX + i >= 0 &&
-				selectedPawnX + i < grid->getSideSize() &&
-				selectedPawnY + j >= 0 &&
-				selectedPawnY + j < grid->getSideSize())
+				grid->getCell(selectedPawnX + i, selectedPawnY + j) != Grid::EDGE)
 			{
 				if (grid->getCell(selectedPawnX + i, selectedPawnY + j) != Grid::NONE)
 				{
@@ -60,6 +57,9 @@ bool Arbiter::isAdjacentToExistingPawn()
 			}
 		}
 	}
+
+	std::cout << "PAWN NOT ADJACENT" << std::endl;
+
 	return false;
 }
 
@@ -67,32 +67,49 @@ bool Arbiter::doesCreateDoubleThree()
 {
 	/* CHECK EVERY DIRECTION AND POSSIBIBLY CROSSING LINES FOR FREELINE  */
 
+	/* INSERTING THE PAWN TMP TO MAKE CHECKING EASIER */
+
+	grid->addPawn(selectedPawnX, selectedPawnY, currentPlayer);
+
 	bool isAlreadyFreeLine = false;
 
-	for (unsigned char n = 0; n < orientationCoefficientsNumber; n++) //A MODIF
+	for (unsigned char n = 0; n < orientationCoefficientsNumber; n++)
 	{
+		linePawnsCount = 0;
+
 		if (CheckFreeLine(selectedPawnX, selectedPawnY, orientationCoefficients[n]))
 		{
-			//CheckCrossingFreeLines();
-			return true;
+			std::cout << "FOUND FREE LINE" << std::endl;
+
+			if (isAlreadyFreeLine == true)
+			{
+				grid->deletePawn(selectedPawnX, selectedPawnY);
+				return true;
+			}
+			else if (CheckFreeCrossingLinesForLine(selectedPawnX, selectedPawnY, orientationCoefficients[n]))
+			{
+				std::cout << "CROSSING FREE LINE FOUND" << std::endl;
+				grid->deletePawn(selectedPawnX, selectedPawnY);
+				return true;
+			}
+			else
+				isAlreadyFreeLine == true;
 		}
 	}
+
+	grid->deletePawn(selectedPawnX, selectedPawnY);
 
 	return false;
 }
 
 bool Arbiter::CheckFreeLine(char startCellX, char startCellY, t_orientation orientationSteps)
 {
-	linePawnsCount = 1;
-
 	if (!CheckFreeLineSide(startCellX, startCellY, orientationSteps, NORMAL) &&
 		!CheckFreeLineSide(startCellX - orientationSteps.x, startCellY - orientationSteps.y, orientationSteps, OPPOSITE) && //NOT CHECKING TWICE THE STARTING CELL OF FREELINE
 		linePawnsCount >= FreeLinePawnsNumber)
 	{
 		return true;
 	}
-
-	std::cout << (int)linePawnsCount << std::endl;
 
 	return false;
 }
@@ -127,7 +144,7 @@ bool Arbiter::CheckFreeLineSide(char startCellX, char startCellY, t_orientation 
 
 void Arbiter::UpdateCountAndFlagsFromCell(char cellX, char cellY)
 {
-	if (cellX < 0 || cellX > grid->getSideSize() || cellY < 0 || cellY > grid->getSideSize())
+	if (grid->getCell(cellX, cellY) == Grid::EDGE)
 	{
 		if (lastCellEmpty == false)
 			lineBlocked = true;
@@ -165,23 +182,22 @@ bool Arbiter::CheckFreeCrossingLinesForLineSide(char startingCellX, char startin
 	char cellX = startingCellX;
 	char cellY = startingCellY;
 
-	if (direction == OPPOSITE)
-	{
-		orientationCoefficient.x = -orientationCoefficient.x;
-		orientationCoefficient.y = -orientationCoefficient.y;
-	}
+	t_orientation tmpOrientationCoefficient;
 
-	while (cellX > 0 &&
-		cellX < grid->getSideSize() &&
-		cellY > 0 &&
-		cellY < grid->getSideSize() &&
+	tmpOrientationCoefficient.x = orientationCoefficient.x;
+	tmpOrientationCoefficient.y = orientationCoefficient.y;
+
+	if (direction == OPPOSITE)
+		tmpOrientationCoefficient = getOrientationCoefficientOpposite(tmpOrientationCoefficient);
+
+	while (grid->getCell(cellX, cellY) != Grid::EDGE &&
 		grid->getCell(cellX, cellY) != opponentColor)
 	{
 		if (CheckFreeCrossingLinesForCell(cellX, cellY, orientationCoefficient))
 			return true;
 
-		cellX += orientationCoefficient.x;
-		cellY += orientationCoefficient.y;
+		cellX += tmpOrientationCoefficient.x;
+		cellY += tmpOrientationCoefficient.y;
 	}
 
 	return false;
@@ -191,13 +207,23 @@ bool Arbiter::CheckFreeCrossingLinesForCell(char cellX, char cellY, t_orientatio
 {
 	for (unsigned char n = 0; n < orientationCoefficientsNumber; n++)
 	{
-		if (orientationCoefficient.x != orientationCoefficients[n].x &&
-			orientationCoefficient.y != orientationCoefficients[n].y)
+		if (!(orientationCoefficient.x == orientationCoefficients[n].x &&
+			orientationCoefficient.y == orientationCoefficients[n].y))
 		{
+			linePawnsCount = 0;
+
 			if (CheckFreeLine(cellX, cellY, orientationCoefficients[n]))
 				return true;
 		}
 	}
 
 	return false;
+}
+
+Arbiter::t_orientation Arbiter::getOrientationCoefficientOpposite(t_orientation orientationCoefficient)
+{
+	orientationCoefficient.x = -orientationCoefficient.x;
+	orientationCoefficient.y = -orientationCoefficient.y;
+	
+	return orientationCoefficient;
 }

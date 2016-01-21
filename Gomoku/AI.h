@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Grid.h"
+#include "Arbiter.h"
 #include <time.h>
 
 class Grid;
@@ -11,6 +12,8 @@ private:
 	Grid *_grid;
 	int _alpha;
 	int _beta;
+	int _value;
+	Arbiter _arbiter;
 
 public:
 	AI(Grid *grid);
@@ -19,5 +22,6 @@ public:
 	int Min(int);
 	int Max(int);
 	int Eval();
+	void getSeries();
 };
 

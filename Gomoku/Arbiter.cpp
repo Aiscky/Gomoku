@@ -1,4 +1,4 @@
-#include "Arbiter.h"
+ #include "Arbiter.h"
 
 Arbiter::Arbiter()
 {
@@ -60,7 +60,6 @@ bool Arbiter::isAdjacentToExistingPawn()
 			}
 		}
 	}
-
 	return false;
 }
 

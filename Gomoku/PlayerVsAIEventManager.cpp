@@ -11,7 +11,7 @@ PlayerVsAIEventManager::PlayerVsAIEventManager(sf::RenderWindow *window, EventMa
 bool PlayerVsAIEventManager::HandleEvent()
 {
 	sf::Event event;
-	while ((*_window).pollEvent(event))
+	while ((*_window).waitEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			(*_window).close();
@@ -21,6 +21,7 @@ bool PlayerVsAIEventManager::HandleEvent()
 			{
 			case sf::Mouse::Left:
 				((PlayerVsAIModel *)this->_model)->Clicked(event.mouseButton.x, event.mouseButton.y);
+				_model->Display(_window);
 				break;
 			}
 		}
@@ -33,7 +34,6 @@ bool PlayerVsAIEventManager::HandleEvent()
 				return true;
 			}
 		}
-		_model->Display(_window);
 	}
 	return true;
 }

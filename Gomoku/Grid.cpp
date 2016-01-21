@@ -84,8 +84,8 @@ void Grid::deletePawn(char x, char y)
 
 char Grid::getCell(char x, char y)
 {
-	if (x < 0 || x > 18 || y < 0 || y > 18)
-		return (3);
+	if (x < 0 || x > squareNumber - 1 || y < 0 || y > squareNumber - 1)
+		return (EDGE);
 	return (_grid[y][x]);
 }
 
@@ -132,10 +132,10 @@ void Grid::affGrid()
 
 Grid::PlayerColor Grid::getOpponentColor(Grid::PlayerColor playerColor)
 {
-	if (playerColor == Grid::WHITE)
-		return Grid::BLACK;
-	else if (playerColor == Grid::BLACK)
-		return Grid::WHITE;
+	if (playerColor == WHITE)
+		return BLACK;
+	else if (playerColor == BLACK)
+		return WHITE;
 	else
-		return Grid::NONE;
+		return NONE;
 }

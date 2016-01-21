@@ -35,7 +35,8 @@ public:
 	{
 		NONE = 0,
 		BLACK = 1,
-		WHITE = 2
+		WHITE = 2,
+		EDGE = 3
 	};
 
 	char _grid[squareNumber][squareNumber];

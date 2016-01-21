@@ -17,10 +17,11 @@ void AI::play()
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
-			if (_grid->getCell(x, y) == 0 && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
+			if (_grid->getCell(x, y) == Grid::NONE && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
 				int tmp = Min(depth - 1);
+				std::cout << "TMP = " << tmp << std::endl;
 				if (tmp > max)
 				{
 					max = tmp;
@@ -31,7 +32,7 @@ void AI::play()
 			}
 		}
 	}
-	std::cout << "Value = " << _value << std::endl;
+	std::cout << "Max = " << max << std::endl;
 	_grid->addPawn(bestX, bestY, Grid::BLACK);
 }
 
@@ -44,7 +45,7 @@ int AI::Min(int depth)
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
-			if (_grid->getCell(x, y) == 0 && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
+			if (_grid->getCell(x, y) == Grid::NONE && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::WHITE);
 				int tmp = Max(depth - 1);
@@ -66,7 +67,7 @@ int AI::Max(int depth)
 	{
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
-			if (_grid->getCell(x, y) == 0 && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
+			if (_grid->getCell(x, y) == Grid::NONE && _arbiter.CheckPlayable(Grid::BLACK, _grid, x, y))
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
 				int tmp = Min(depth - 1);
@@ -83,63 +84,70 @@ int AI::Max(int depth)
 
 int AI::Eval()
 {
-	_value = 0;
-	getSeries();
-	return (_value);
-}
+	int value = 0;
 
-void AI::getSeries()
-{
-	//En ligne;
+	// EN LIGNE
+
 	for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 	{
 		int white = 0;
 		int black = 0;
 		for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 		{
+			// ALIGNEMENT DE WHITE
 			if (_grid->getCell(x, y) == Grid::WHITE)
 			{
 				white++;
 				black = 0;
 				if (white == 5)
-					_value -= 1000;
+					value -= 1000;
 				else if (white == 4)
 				{
-					if (_grid->getCell(x - 5, y) == 0 && _grid->getCell(x + 1, y) == 0)
-						_value -= 400;
-					else if (_grid->getCell(x - 5, y) == 0 || _grid->getCell(x + 1, y) == 0)
-						_value -= 100;
+					if (_grid->getCell(x - 4, y) == Grid::NONE && _grid->getCell(x + 1, y) == Grid::NONE)
+						value -= 400;
+					else if (_grid->getCell(x - 4, y) == Grid::NONE || _grid->getCell(x + 1, y) == Grid::NONE)
+						value -= 100;
 				}
 				else if (white == 3)
 				{
-					if (_grid->getCell(x - 4, y) == 0 && _grid->getCell(x + 1, y) == 0)
-						_value -= 50;
+					if (_grid->getCell(x - 3, y) == Grid::NONE && _grid->getCell(x + 1, y) == Grid::NONE)
+						value -= 50;
 				}
 			}
+			// ALIGNEMENT DE BLACK
 			else if (_grid->getCell(x, y) == Grid::BLACK)
 			{
 				white = 0;
 				black++;
 				if (black == 5)
-					_value += 1000;
+					value += 1000;
 				else if (black == 4)
 				{
-					if (_grid->getCell(x - 5, y) == 0 && _grid->getCell(x + 1, y) == 0)
-						_value += 400;
-					else if (_grid->getCell(x - 5, y) == 0 || _grid->getCell(x + 1, y) == 0)
-						_value += 100;
+					if (_grid->getCell(x - 4, y) == Grid::NONE && _grid->getCell(x + 1, y) == Grid::NONE)
+						value += 400;
+					else if (_grid->getCell(x - 4, y) == Grid::NONE || _grid->getCell(x + 1, y) == Grid::NONE)
+						value += 100;
 				}
 				else if (black == 3)
 				{
-					if (_grid->getCell(x - 4, y) == 0 && _grid->getCell(x + 1, y) == 0)
-						_value += 50;
-					else if (_grid->getCell(x - 4, y) == 0 && _grid->getCell(x - 5, y) == 0
-						|| _grid->getCell(x + 1, y) == 0 && _grid->getCell(x + 2, y) == 0)
-						_value += 10;
+					if (_grid->getCell(x - 3, y) == 0 && _grid->getCell(x + 1, y) == Grid::NONE)
+						value += 50;
+					else if (_grid->getCell(x - 3, y) == Grid::NONE && _grid->getCell(x - 4, y) == Grid::NONE
+						|| _grid->getCell(x + 1, y) == Grid::NONE && _grid->getCell(x + 2, y) == Grid::NONE)
+						value += 10;
 				}
-				else if (black == 2 && _grid->getCell(x + 1, y) == 0 && _grid->getCell(x + 2, y) == 0 && _grid->getCell(x + 3, y) == 0)
+				else if (black == 2)
 				{
-					_value += 1;
+					if (_grid->getCell(x + 1, y) == Grid::NONE && _grid->getCell(x + 2, y) == Grid::NONE
+						&& (_grid->getCell(x + 3, y) == Grid::NONE || _grid->getCell(x - 2, y) == Grid::NONE))
+					{
+						value += 2;
+					}
+					else if (_grid->getCell(x - 2, y) == Grid::NONE && _grid->getCell(x - 3, y) == Grid::NONE
+						&& (_grid->getCell(x - 4, y) == Grid::NONE || _grid->getCell(x + 1, y) == Grid::NONE))
+					{
+						value += 2;
+					}
 				}
 			}
 			else
@@ -149,56 +157,69 @@ void AI::getSeries()
 			}
 		}
 	}
-	// En Colonne
+
+	// EN COLONNE
+
 	for (char x = _grid->getLeft(); x <= _grid->getRight(); x++)
 	{
 		int white = 0;
 		int black = 0;
 		for (char y = _grid->getTop(); y <= _grid->getBottom(); y++)
 		{
+			// ALIGNEMENT DE WHITE
 			if (_grid->getCell(x, y) == Grid::WHITE)
 			{
 				black = 0;
 				white++;
 				if (white == 5)
-					_value -= 1000;
+					value -= 1000;
 				else if (white == 4)
 				{
-					if (_grid->getCell(x, y - 5) == 0 && _grid->getCell(x, y + 1) == 0)
-						_value -= 400;
-					else if (_grid->getCell(x, y - 5) == 0 || _grid->getCell(x, y + 1) == 0)
-						_value -= 100;
+					if (_grid->getCell(x, y - 4) == Grid::NONE && _grid->getCell(x, y + 1) == Grid::NONE)
+						value -= 400;
+					else if (_grid->getCell(x, y - 4) == Grid::NONE || _grid->getCell(x, y + 1) == Grid::NONE)
+						value -= 100;
 				}
 				else if (white == 3)
 				{
-					if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y + 1) == 0)
-						_value -= 50;
+					if (_grid->getCell(x, y - 3) == Grid::NONE && _grid->getCell(x, y + 1) == Grid::NONE)
+						value -= 50;
 				}
 			}
+			// ALIGNEMENT DE BLACK
 			else if (_grid->getCell(x, y) == Grid::BLACK)
 			{
 				white = 0;
 				black++;
 				if (black == 5)
-					_value += 1000;
+					value += 1000;
 				else if (black == 4)
 				{
-					if (_grid->getCell(x, y - 5) == 0 && _grid->getCell(x, y + 1) == 0)
-						_value += 400;
-					else if (_grid->getCell(x, y - 5) == 0 || _grid->getCell(x, y + 1) == 0)
-						_value += 100;
+					if (_grid->getCell(x, y - 4) == Grid::NONE && _grid->getCell(x, y + 1) == Grid::NONE)
+						value += 400;
+					else if (_grid->getCell(x, y - 4) == Grid::NONE || _grid->getCell(x, y + 1) == Grid::NONE)
+						value += 100;
 				}
 				else if (black == 3)
 				{
-					if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y + 1) == 0)
-						_value += 50;
-					else if (_grid->getCell(x, y - 4) == 0 && _grid->getCell(x, y - 5) == 0 
-							|| _grid->getCell(x, y + 1) == 0 && _grid->getCell(x, y + 2) == 0)
-						_value += 10;
+					if (_grid->getCell(x, y - 3) == Grid::NONE && _grid->getCell(x, y + 1) == Grid::NONE)
+						value += 50;
+					else if (_grid->getCell(x, y - 3) == Grid::NONE && _grid->getCell(x, y - 4) == Grid::NONE
+						|| _grid->getCell(x, y + 1) == Grid::NONE && _grid->getCell(x, y + 2) == Grid::NONE)
+						value += 10;
 				}
-				else if (black == 2 && _grid->getCell(x, y + 1) == 0 && _grid->getCell(x, y + 2) == 0 && _grid->getCell(x, y + 3) == 0)
+				else if (black == 2)
 				{
-					_value += 1;
+					if (_grid->getCell(x, y + 1) == Grid::NONE && _grid->getCell(x, y + 2) == Grid::NONE
+						&& (_grid->getCell(x, y + 3) == Grid::NONE || _grid->getCell(x, y - 2) == Grid::NONE))
+					{
+						value += 2;
+					}
+					else if (_grid->getCell(x, y - 2) == Grid::NONE && _grid->getCell(x, y - 3) == Grid::NONE
+						&& (_grid->getCell(x, y - 4) == Grid::NONE || _grid->getCell(x, y + 1) == Grid::NONE))
+					{
+						value += 2;
+					}
 				}
 			}
 			else
@@ -208,4 +229,5 @@ void AI::getSeries()
 			}
 		}
 	}
+	return (value);
 }

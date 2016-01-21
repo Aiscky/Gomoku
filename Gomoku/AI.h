@@ -22,6 +22,5 @@ public:
 	int Min(int);
 	int Max(int);
 	int Eval();
-	void getSeries();
 };
 

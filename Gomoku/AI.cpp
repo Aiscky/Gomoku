@@ -316,8 +316,8 @@ int AI::Eval()
 
 	// EN DIAG DESCENDANTE
 
-	char Y = _grid->getBottom();
-	char X = _grid->getLeft();
+	Y = _grid->getBottom();
+	X = _grid->getLeft();
 	while (X < _grid->getRight())
 	{
 		black = 0;

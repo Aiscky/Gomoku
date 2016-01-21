@@ -61,7 +61,7 @@ public:
 	bool CheckPlayable(Grid::PlayerColor currentPlayer, Grid *grid, char x, char y);
 
 	/* FUNCTION TO CHECK IF THE DOUBLE TREE RULE IS FOLLOWED */
-	bool doesCreateDoubleTree();
+	bool doesCreateDoubleThree();
 
 	/* FUNCTION TO CHECK IF ADJACENT RULE IS FOLLOWED */
 	bool isAdjacentToExistingPawn();

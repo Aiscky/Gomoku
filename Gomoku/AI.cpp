@@ -229,5 +229,15 @@ int AI::Eval()
 			}
 		}
 	}
+
+	// EN DIAG -> Y = X
+	char x = _grid->getLeft();
+	char y = _grid->getTop();
+	while (x < _grid->getRight())
+	{
+
+	}
+		
+
 	return (value);
 }

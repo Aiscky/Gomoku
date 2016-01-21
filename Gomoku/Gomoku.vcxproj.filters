@@ -46,6 +46,12 @@
     <Filter Include="Header Files\Game\PVP">
       <UniqueIdentifier>{fcc7eae8-f642-458a-b57c-6eb897ee458c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\HUD">
+      <UniqueIdentifier>{1060ef35-9270-4706-9bc4-1acd3abab7f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\HUD">
+      <UniqueIdentifier>{230f7a4e-65fc-4a79-9479-63d12aefdccc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,6 +98,12 @@
     </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>Source Files\Game\PlayerVsAI</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameHUD.cpp">
+      <Filter>Source Files\Game\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameHUDField.cpp">
+      <Filter>Source Files\Game\HUD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameHUD.h">
+      <Filter>Header Files\Game\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameHUDField.h">
+      <Filter>Header Files\Game\HUD</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

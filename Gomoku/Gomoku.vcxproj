@@ -147,6 +147,8 @@ xcopy "$(SolutionDir)Images\*" "$(TargetDir)Images" /Y /D</Command>
     <ClCompile Include="ExitButton.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="InGameHUD.cpp" />
+    <ClCompile Include="InGameHUDField.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuEventManager.cpp" />
     <ClCompile Include="MenuModel.cpp" />
@@ -165,6 +167,8 @@ xcopy "$(SolutionDir)Images\*" "$(TargetDir)Images" /Y /D</Command>
     <ClInclude Include="ExitButton.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="InGameHUD.h" />
+    <ClInclude Include="InGameHUDField.h" />
     <ClInclude Include="MenuEventManager.h" />
     <ClInclude Include="MenuModel.h" />
     <ClInclude Include="Model.h" />

@@ -58,8 +58,6 @@ bool Arbiter::isAdjacentToExistingPawn()
 		}
 	}
 
-	std::cout << "PAWN NOT ADJACENT" << std::endl;
-
 	return false;
 }
 

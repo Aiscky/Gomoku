@@ -36,6 +36,11 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 	_winningStates[1] = false;
 }
 
+void PVPModel::SettingHUD()
+{
+
+}
+
 // Convert coordinates to grid coordinates and check send it to arbiter
 
 bool PVPModel::Clicked(float x, float y)
@@ -59,9 +64,7 @@ bool PVPModel::Clicked(float x, float y)
 
 void PVPModel::ChangePlayerTurn()
 {
-	std::cout << _playerTurn << std::endl;
 	_playerTurn = _grid->getOpponentColor(_playerTurn);
-	std::cout << _playerTurn << std::endl;
 }
 
 void PVPModel::Display(sf::RenderWindow *window)

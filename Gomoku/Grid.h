@@ -50,6 +50,8 @@ public:
 	char getTop();
 	char getBottom();
 	PlayerColor getOpponentColor(PlayerColor playerColor);
+	char capturedPairs(PlayerColor playerColor);
+	
 	void affGrid();
 
 };

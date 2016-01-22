@@ -118,6 +118,21 @@ char Grid::getBottom()
 	return (_searchSpace.bottom);
 }
 
+Grid::PlayerColor Grid::getOpponentColor(Grid::PlayerColor playerColor)
+{
+	if (playerColor == WHITE)
+		return BLACK;
+	else if (playerColor == BLACK)
+		return WHITE;
+	else
+		return NONE;
+}
+
+char Grid::capturedPairs(PlayerColor playerColor)
+{
+	return (_playersPairsCaptured[playerColor-1]);
+}
+
 void Grid::affGrid()
 {
 	for (unsigned char y = 0; y < squareNumber; y++)
@@ -128,14 +143,4 @@ void Grid::affGrid()
 		}
 		std::cout << std::endl;
 	}
-}
-
-Grid::PlayerColor Grid::getOpponentColor(Grid::PlayerColor playerColor)
-{
-	if (playerColor == WHITE)
-		return BLACK;
-	else if (playerColor == BLACK)
-		return WHITE;
-	else
-		return NONE;
 }

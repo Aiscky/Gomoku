@@ -225,3 +225,4 @@ Arbiter::t_orientation Arbiter::getOrientationCoefficientOpposite(t_orientation 
 	
 	return orientationCoefficient;
 }
+

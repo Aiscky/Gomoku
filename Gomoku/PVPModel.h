@@ -2,6 +2,7 @@
 #include "Model.h"
 #include "GameEngine.h"
 #include "Arbiter.h"
+#include "InGameHUD.h"
 
 class Grid;
 
@@ -15,11 +16,16 @@ private:
 
 	Grid *_grid;
 
-	Grid::PlayerColor _playerTurn;
+	enum Player
+	{
+		WHITE,
+		BLACK
+	};
+
+	Grid::PlayerColor _currentPlayerColor;
+	Player _currentPlayer;
 	bool _winningStates[2];
 
-	char _pairsCaptured[2];
-	char _pawnsLeft[2];
 	char _currentTurnNumber;
 
 	sf::Texture _pawnsTexture[2];
@@ -27,9 +33,7 @@ private:
 	sf::Texture _gridBackgroundTexture;
 	sf::Sprite _gridBackground;
 
-	/* HUD VARIABLES */
-
-
+	InGameHUD *_HUD;
 
 	sf::RenderWindow *_window;
 	EventManager **_eventManagerAddr;

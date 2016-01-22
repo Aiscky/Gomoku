@@ -8,6 +8,11 @@ Grid::Grid()
 	_searchSpace.right = mid + 1;
 	_searchSpace.top = mid - 1;
 	_searchSpace.bottom = mid + 1;
+	_playersPawnsLeft[0] = StartingPawnsLeft;
+	_playersPawnsLeft[1] = StartingPawnsLeft;
+	_playersPairsCaptured[0] = StartingPairsCaptured;
+	_playersPairsCaptured[1] = StartingPairsCaptured;
+
 	addPawn(mid, mid, BLACK);
 }
 
@@ -138,4 +143,24 @@ Grid::PlayerColor Grid::getOpponentColor(Grid::PlayerColor playerColor)
 		return WHITE;
 	else
 		return NONE;
+}
+
+char *Grid::getPlayersPawnsLeft()
+{
+	return _playersPawnsLeft;
+}
+
+char *Grid::getPlayersPawnsCaptured()
+{
+	return _playersPairsCaptured;
+}
+
+void Grid::RemovePawnFromPlayerPawnsLeft(char playerNumber)
+{
+	_playersPawnsLeft[playerNumber] = _playersPawnsLeft[playerNumber] - 1;
+}
+
+void Grid::AddCapturedPairToPlayer(char playerNumber)
+{
+	_playersPairsCaptured[playerNumber] = _playersPairsCaptured[playerNumber] + 1;
 }

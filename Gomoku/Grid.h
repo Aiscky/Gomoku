@@ -67,6 +67,5 @@ public:
 	char *getPlayersPawnsLeft();
 	char *getPlayersPawnsCaptured();
 	void RemovePawnFromPlayerPawnsLeft(char playerNumber);
-	void AddCapturedPairToPlayer(char playerNumber);
 };
 

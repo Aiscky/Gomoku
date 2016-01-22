@@ -235,8 +235,3 @@ void Grid::RemovePawnFromPlayerPawnsLeft(char playerNumber)
 {
 	_playersPawnsLeft[playerNumber] = _playersPawnsLeft[playerNumber] - 1;
 }
-
-void Grid::AddCapturedPairToPlayer(char playerNumber)
-{
-	_playersPawnsCaptured[playerNumber] = _playersPawnsCaptured[playerNumber] + 1;
-}

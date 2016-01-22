@@ -72,16 +72,7 @@ bool PVPModel::Clicked(float x, float y)
 			_grid->cleanCapture();
 			_grid->RemovePawnFromPlayerPawnsLeft(_currentPlayer);
 			_HUD->setPawnsLeftField((char)_currentPlayer, _grid->getPlayersPawnsLeft()[_currentPlayer]);
-
-			/* DO CAPTURE AND CHECK IF WON SET WINNING STATE */
-
-			/*
-			_arbiter->DoCaptureFromCell();
-			if (_pairsCaptured[player] >= numberOfPairsToWin)
-				->win
-				if (_arbiter->CheckWinningStateFromCell(grid, currentPlayer, cellX, cellY))
-					winningStates[player] = true;
-			*/
+			_HUD->setCapturedPawnsField(_currentPlayer, _grid->getPlayersPawnsCaptured()[_currentPlayer]);
 
 			ChangePlayerTurn();
 		}

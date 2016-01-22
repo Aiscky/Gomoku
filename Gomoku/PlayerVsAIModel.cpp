@@ -71,6 +71,8 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 
 			_currentTurnNumber += 1;
 			_HUD->setCurrentTurnNumberField(_currentTurnNumber);
+			_HUD->setCapturedPawnsField(BLACK, _grid->getPlayersPawnsCaptured()[BLACK]);
+			_HUD->setCapturedPawnsField(WHITE, _grid->getPlayersPawnsCaptured()[WHITE]);
 			_grid->affGrid();
 		}
 	}

@@ -407,25 +407,25 @@ int AI::Eval()
 
 	//WHITE
 	if (_grid->getPlayersPawnsCaptured()[1] == 2)
-		value -= 20;
+		value -= 100;
 	else if (_grid->getPlayersPawnsCaptured()[1] == 4)
-		value -= 40;
-	else if (_grid->getPlayersPawnsCaptured()[1] == 6)
-		value -= 80;
-	else if (_grid->getPlayersPawnsCaptured()[1] == 8)
 		value -= 200;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 6)
+		value -= 300;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 8)
+		value -= 500;
 	else if (_grid->getPlayersPawnsCaptured()[1] == 10)
 		value -= 8000;
 
 	//BLACK
 	if (_grid->getPlayersPawnsCaptured()[0] == 2)
-		value += 20;
+		value += 100;
 	else if (_grid->getPlayersPawnsCaptured()[0] == 4)
-		value += 40;
-	else if (_grid->getPlayersPawnsCaptured()[0] == 6)
-		value += 80;
-	else if (_grid->getPlayersPawnsCaptured()[0] == 8)
 		value += 200;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 6)
+		value += 300;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 8)
+		value += 500;
 	else if (_grid->getPlayersPawnsCaptured()[0] == 10)
 		value += 8000;
 

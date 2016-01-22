@@ -5,7 +5,7 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 	_window = window;
 	_eventManagerAddr = eventManagerAddr;
 
-	/* CREATING GRID */
+	/* SETTING GRID */
 
 	_grid = new Grid();
 
@@ -25,20 +25,29 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 	_gridBackground.setTexture(_gridBackgroundTexture);
 	_gridBackground.setPosition(_gridBackgroundRect.left, _gridBackgroundRect.top);
 
-	_pawnsTexture[0].loadFromFile("Images/Black.png");
-	_pawnsTexture[1].loadFromFile("Images/White.png");
+	_pawnsTexture[BLACK].loadFromFile("Images/Black.png");
+	_pawnsTexture[WHITE].loadFromFile("Images/White.png");
 
-	_pawnsSprites[0].setTexture(_pawnsTexture[0]);
-	_pawnsSprites[1].setTexture(_pawnsTexture[1]);
+	_pawnsSprites[BLACK].setTexture(_pawnsTexture[BLACK]);
+	_pawnsSprites[WHITE].setTexture(_pawnsTexture[WHITE]);
 
-	_winningStates[0] = false;
-	_winningStates[1] = false;
+	_winningStates[BLACK] = false;
+	_winningStates[WHITE] = false;
+
+	//	SETTING HUD
+
+	SettingHUD();
 
 	/* CREATING AI */
 
 	_bot = new AI(_grid);
-
 }
+
+void PlayerVsAIModel::SettingHUD()
+{
+	_HUD = new InGameHUD(_grid->getPlayersPawnsCaptured(), _grid->getPlayersPawnsLeft(), _currentTurnNumber);
+}
+
 
 bool PlayerVsAIModel::Clicked(float x, float y)
 {
@@ -52,7 +61,15 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 		if (_arbiter.CheckPlayable(Grid::WHITE, _grid, X, Y))
 		{
 			_grid->addPawn(X, Y, Grid::WHITE);
+			_grid->RemovePawnFromPlayerPawnsLeft(WHITE);
+			_HUD->setPawnsLeftField((char)WHITE, _grid->getPlayersPawnsLeft()[WHITE]);
+			
 			_bot->play();
+			_grid->RemovePawnFromPlayerPawnsLeft(BLACK);
+			_HUD->setPawnsLeftField((char)BLACK, _grid->getPlayersPawnsLeft()[BLACK]);
+
+			_currentTurnNumber += 1;
+			_HUD->setCurrentTurnNumberField(_currentTurnNumber);
 		}
 	}
 	return true;
@@ -66,18 +83,20 @@ void PlayerVsAIModel::Display(sf::RenderWindow *window)
 	{
 		for (unsigned int x = 0; x < _grid->getSideSize(); x++)
 		{
-			if (_grid->getCell(x, y) == 1)
+			if (_grid->getCell(x, y) == Grid::BLACK)
 			{
-				_pawnsSprites[0].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
-				window->draw(_pawnsSprites[0]);
+				_pawnsSprites[BLACK].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
+				window->draw(_pawnsSprites[BLACK]);
 			}
-			if (_grid->getCell(x, y) == 2)
+			if (_grid->getCell(x, y) == Grid::WHITE)
 			{
-				_pawnsSprites[1].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
-				window->draw(_pawnsSprites[1]);
+				_pawnsSprites[WHITE].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
+				window->draw(_pawnsSprites[WHITE]);
 			}
 		}
 	}
+	_HUD->Display(window);
+
 	window->display();
 }
 

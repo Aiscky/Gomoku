@@ -92,8 +92,12 @@ void PVPModel::ChangePlayerTurn()
 {
 	_currentPlayer = (Player)(_currentPlayer ^ 1);
 	_currentPlayerColor = _grid->getOpponentColor(_currentPlayerColor);
-	_currentTurnNumber++;
-	_HUD->setCurrentTurnNumberField(_currentTurnNumber);
+	if (_currentPlayer == WHITE)
+	{
+		_currentTurnNumber++;
+		_HUD->setCurrentTurnNumberField(_currentTurnNumber);
+
+	}
 }
 
 void PVPModel::Display(sf::RenderWindow *window)
@@ -111,13 +115,13 @@ void PVPModel::Display(sf::RenderWindow *window)
 
 			if (cellPlayerColor == Grid::BLACK)
 			{
-				_pawnsSprites[0].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
-				window->draw(_pawnsSprites[0]);
+				_pawnsSprites[BLACK].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
+				window->draw(_pawnsSprites[BLACK]);
 			}
 			if (cellPlayerColor == Grid::WHITE)
 			{
-				_pawnsSprites[1].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
-				window->draw(_pawnsSprites[1]);
+				_pawnsSprites[WHITE].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
+				window->draw(_pawnsSprites[WHITE]);
 			}
 		}
 	}

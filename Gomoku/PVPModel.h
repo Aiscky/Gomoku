@@ -13,13 +13,12 @@ private:
 
 	sf::FloatRect _gridBackgroundRect;
 	sf::Vector2f _squareSize;
-
 	Grid *_grid;
 
 	enum Player
 	{
-		WHITE,
-		BLACK
+		BLACK,
+		WHITE
 	};
 
 	Grid::PlayerColor _currentPlayerColor;

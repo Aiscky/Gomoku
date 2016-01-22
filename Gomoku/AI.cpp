@@ -401,29 +401,29 @@ int AI::Eval()
 
 	// CAPTURES
 
-	//WHITE
-	if (_grid->capturedPairs(Grid::WHITE) == 1)
-		value -= 20;
-	else if (_grid->capturedPairs(Grid::WHITE) == 2)
-		value -= 40;
-	else if (_grid->capturedPairs(Grid::WHITE) == 3)
-		value -= 80;
-	else if (_grid->capturedPairs(Grid::WHITE) == 4)
-		value -= 200;
-	else if (_grid->capturedPairs(Grid::WHITE) == 5)
-		value -= 8000;
+	////WHITE
+	//if (_grid->capturedPairs(Grid::WHITE) == 1)
+	//	value -= 20;
+	//else if (_grid->capturedPairs(Grid::WHITE) == 2)
+	//	value -= 40;
+	//else if (_grid->capturedPairs(Grid::WHITE) == 3)
+	//	value -= 80;
+	//else if (_grid->capturedPairs(Grid::WHITE) == 4)
+	//	value -= 200;
+	//else if (_grid->capturedPairs(Grid::WHITE) == 5)
+	//	value -= 8000;
 
-	//BLACK
-	if (_grid->capturedPairs(Grid::BLACK) == 1)
-		value += 20;
-	else if (_grid->capturedPairs(Grid::BLACK) == 2)
-		value += 40;
-	else if (_grid->capturedPairs(Grid::BLACK) == 3)
-		value += 80;
-	else if (_grid->capturedPairs(Grid::BLACK) == 4)
-		value += 200;
-	else if (_grid->capturedPairs(Grid::BLACK) == 5)
-		value += 8000;
+	////BLACK
+	//if (_grid->capturedPairs(Grid::BLACK) == 1)
+	//	value += 20;
+	//else if (_grid->capturedPairs(Grid::BLACK) == 2)
+	//	value += 40;
+	//else if (_grid->capturedPairs(Grid::BLACK) == 3)
+	//	value += 80;
+	//else if (_grid->capturedPairs(Grid::BLACK) == 4)
+	//	value += 200;
+	//else if (_grid->capturedPairs(Grid::BLACK) == 5)
+	//	value += 8000;
 
 	return (value);
 }

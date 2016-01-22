@@ -61,6 +61,7 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 		if (_arbiter.CheckPlayable(Grid::WHITE, _grid, X, Y))
 		{
 			_grid->addPawn(X, Y, Grid::WHITE);
+			_grid->cleanCapture();
 			_grid->RemovePawnFromPlayerPawnsLeft(WHITE);
 			_HUD->setPawnsLeftField((char)WHITE, _grid->getPlayersPawnsLeft()[WHITE]);
 			
@@ -70,6 +71,7 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 
 			_currentTurnNumber += 1;
 			_HUD->setCurrentTurnNumberField(_currentTurnNumber);
+			_grid->affGrid();
 		}
 	}
 	return true;

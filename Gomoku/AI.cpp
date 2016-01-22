@@ -28,11 +28,13 @@ void AI::play()
 					bestX = x;
 					bestY = y;
 				}
+				_grid->cancelCapture(Grid::BLACK);
 				_grid->deletePawn(x, y);
 			}
 		}
 	}
 	_grid->addPawn(bestX, bestY, Grid::BLACK);
+	_grid->cleanCapture();
 }
 
 int AI::Min(int depth)
@@ -48,6 +50,7 @@ int AI::Min(int depth)
 			{
 				_grid->addPawn(x, y, Grid::WHITE);
 				_beta = std::min(_beta, Max(depth - 1));
+				_grid->cancelCapture(Grid::WHITE);
 				_grid->deletePawn(x, y);
 				if (_beta <= _alpha)
 					return (_alpha);
@@ -70,6 +73,7 @@ int AI::Max(int depth)
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
 				_alpha = std::max(_alpha, Min(depth - 1));
+				_grid->cancelCapture(Grid::BLACK);
 				_grid->deletePawn(x, y);
 				
 			}
@@ -401,29 +405,29 @@ int AI::Eval()
 
 	// CAPTURES
 
-	////WHITE
-	//if (_grid->capturedPairs(Grid::WHITE) == 1)
-	//	value -= 20;
-	//else if (_grid->capturedPairs(Grid::WHITE) == 2)
-	//	value -= 40;
-	//else if (_grid->capturedPairs(Grid::WHITE) == 3)
-	//	value -= 80;
-	//else if (_grid->capturedPairs(Grid::WHITE) == 4)
-	//	value -= 200;
-	//else if (_grid->capturedPairs(Grid::WHITE) == 5)
-	//	value -= 8000;
+	//WHITE
+	if (_grid->getPlayersPawnsCaptured()[1] == 2)
+		value -= 20;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 4)
+		value -= 40;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 6)
+		value -= 80;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 8)
+		value -= 200;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 10)
+		value -= 8000;
 
-	////BLACK
-	//if (_grid->capturedPairs(Grid::BLACK) == 1)
-	//	value += 20;
-	//else if (_grid->capturedPairs(Grid::BLACK) == 2)
-	//	value += 40;
-	//else if (_grid->capturedPairs(Grid::BLACK) == 3)
-	//	value += 80;
-	//else if (_grid->capturedPairs(Grid::BLACK) == 4)
-	//	value += 200;
-	//else if (_grid->capturedPairs(Grid::BLACK) == 5)
-	//	value += 8000;
+	//BLACK
+	if (_grid->getPlayersPawnsCaptured()[0] == 2)
+		value += 20;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 4)
+		value += 40;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 6)
+		value += 80;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 8)
+		value += 200;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 10)
+		value += 8000;
 
 	return (value);
 }

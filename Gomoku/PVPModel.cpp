@@ -69,6 +69,7 @@ bool PVPModel::Clicked(float x, float y)
 			*/
 
 			_grid->addPawn(X, Y, _currentPlayerColor);
+			_grid->cleanCapture();
 			_grid->RemovePawnFromPlayerPawnsLeft(_currentPlayer);
 			_HUD->setPawnsLeftField((char)_currentPlayer, _grid->getPlayersPawnsLeft()[_currentPlayer]);
 

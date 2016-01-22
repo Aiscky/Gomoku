@@ -18,8 +18,8 @@ private:
 
 	enum Player
 	{
-		WHITE,
-		BLACK
+		BLACK,
+		WHITE
 	};
 
 	Grid::PlayerColor _currentPlayerColor;

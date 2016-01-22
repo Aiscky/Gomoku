@@ -27,6 +27,10 @@ private:
 
 	t_searchspace _searchSpace;
 
+	static const int StartingPawnsLeft = 60;
+	static const int StartingPairsCaptured = 0;
+
+
 public:
 	Grid();
 	~Grid() {};
@@ -53,6 +57,10 @@ public:
 	char capturedPairs(PlayerColor playerColor);
 	
 	void affGrid();
-
+	
+	char *getPlayersPawnsLeft();
+	char *getPlayersPawnsCaptured();
+	void RemovePawnFromPlayerPawnsLeft(char playerNumber);
+	void AddCapturedPairToPlayer(char playerNumber);
 };
 

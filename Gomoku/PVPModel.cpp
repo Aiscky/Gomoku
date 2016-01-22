@@ -25,15 +25,24 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 	_gridBackground.setTexture(_gridBackgroundTexture);
 	_gridBackground.setPosition(_gridBackgroundRect.left, _gridBackgroundRect.top);
 
-	_pawnsTexture[0].loadFromFile("Images/Black.png");
-	_pawnsTexture[1].loadFromFile("Images/White.png");
+	_pawnsTexture[BLACK].loadFromFile("Images/Black.png");
+	_pawnsTexture[WHITE].loadFromFile("Images/White.png");
 
-	_pawnsSprites[0].setTexture(_pawnsTexture[0]);
-	_pawnsSprites[1].setTexture(_pawnsTexture[1]);
+	_pawnsSprites[BLACK].setTexture(_pawnsTexture[BLACK]);
+	_pawnsSprites[WHITE].setTexture(_pawnsTexture[WHITE]);
 
-	_playerTurn = Grid::WHITE;
-	_winningStates[0] = false;
-	_winningStates[1] = false;
+	_currentPlayerColor = Grid::WHITE;
+	_currentPlayer = WHITE;
+
+	_winningStates[BLACK] = false;
+	_winningStates[WHITE] = false;
+
+	SettingHUD();
+}
+
+void PVPModel::SettingHUD()
+{
+	_HUD = new InGameHUD(_grid->getPlayersPawnsCaptured(), _grid->getPlayersPawnsLeft(), _currentTurnNumber);
 }
 
 // Convert coordinates to grid coordinates and check send it to arbiter
@@ -47,10 +56,32 @@ bool PVPModel::Clicked(float x, float y)
 
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
-		if (_arbiter.CheckPlayable(_playerTurn, _grid, X, Y))
+		if (_arbiter.CheckPlayable(_currentPlayerColor, _grid, X, Y))
 		{
-			std::cout << "PAWN VALUE : " << (int)Grid::BLACK << std::endl;
-			_grid->addPawn(X, Y, _playerTurn);
+			/* CHECK IF STILL WINNING IF WINNING STATE = TRUE */
+
+			/*
+			if (_winningStates[0])
+			{
+				if (_arbiter->CheckWinningStateFromBoard(grid, currentPlayer))
+					-> winning
+			}
+			*/
+
+			_grid->addPawn(X, Y, _currentPlayerColor);
+			_grid->RemovePawnFromPlayerPawnsLeft(_currentPlayer);
+			_HUD->setPawnsLeftField((char)_currentPlayer, _grid->getPlayersPawnsLeft()[_currentPlayer]);
+
+			/* DO CAPTURE AND CHECK IF WON SET WINNING STATE */
+
+			/*
+			_arbiter->DoCaptureFromCell();
+			if (_pairsCaptured[player] >= numberOfPairsToWin)
+				->win
+				if (_arbiter->CheckWinningStateFromCell(grid, currentPlayer, cellX, cellY))
+					winningStates[player] = true;
+			*/
+
 			ChangePlayerTurn();
 		}
 	}
@@ -59,9 +90,10 @@ bool PVPModel::Clicked(float x, float y)
 
 void PVPModel::ChangePlayerTurn()
 {
-	std::cout << _playerTurn << std::endl;
-	_playerTurn = _grid->getOpponentColor(_playerTurn);
-	std::cout << _playerTurn << std::endl;
+	_currentPlayer = (Player)(_currentPlayer ^ 1);
+	_currentPlayerColor = _grid->getOpponentColor(_currentPlayerColor);
+	_currentTurnNumber++;
+	_HUD->setCurrentTurnNumberField(_currentTurnNumber);
 }
 
 void PVPModel::Display(sf::RenderWindow *window)
@@ -70,7 +102,7 @@ void PVPModel::Display(sf::RenderWindow *window)
 
 	window->clear();
 	window->draw(_gridBackground);
-	std::cout << "Drawing" << std::endl;
+
 	for (unsigned char x = 0; x < _grid->getSideSize(); x++)
 	{
 		for (unsigned char y = 0; y < _grid->getSideSize(); y++)
@@ -89,6 +121,8 @@ void PVPModel::Display(sf::RenderWindow *window)
 			}
 		}
 	}
+
+	_HUD->Display(window);
 
 	window->display();
 }

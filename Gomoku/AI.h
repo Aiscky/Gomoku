@@ -12,7 +12,6 @@ private:
 	Grid *_grid;
 	int _alpha;
 	int _beta;
-	int _value;
 	Arbiter _arbiter;
 
 public:

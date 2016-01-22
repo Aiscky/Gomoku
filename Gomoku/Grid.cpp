@@ -14,6 +14,7 @@ Grid::Grid()
 	_playersPairsCaptured[1] = StartingPairsCaptured;
 
 	addPawn(mid, mid, BLACK);
+	_playersPawnsLeft[0]--;
 }
 
 unsigned char Grid::getSideSize()

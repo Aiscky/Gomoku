@@ -34,6 +34,8 @@ private:
 	sf::Sprite _pawnsSprites[2];
 	sf::Texture _gridBackgroundTexture;
 	sf::Sprite _gridBackground;
+	sf::Texture _backgroundTexture;
+	sf::Sprite _background;
 
 	sf::RenderWindow *_window;
 	EventManager **_eventManagerAddr;

@@ -21,6 +21,10 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 
 	/* CREATING SPRITES AND TEXTURES */
 
+	_backgroundTexture.loadFromFile("Images/wood_background.bmp");
+	_background.setTexture(_backgroundTexture);
+	_background.setPosition(0, 0);
+
 	_gridBackgroundTexture.loadFromFile("Images/Goban.bmp");
 	_gridBackground.setTexture(_gridBackgroundTexture);
 	_gridBackground.setPosition(_gridBackgroundRect.left, _gridBackgroundRect.top);
@@ -115,6 +119,7 @@ void PVPModel::Display(sf::RenderWindow *window)
 	Grid::PlayerColor cellPlayerColor;
 
 	window->clear();
+	window->draw(_background);
 	window->draw(_gridBackground);
 
 	for (unsigned char x = 0; x < _grid->getSideSize(); x++)

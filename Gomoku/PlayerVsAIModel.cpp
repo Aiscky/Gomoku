@@ -21,6 +21,10 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 
 	/* CREATING SPRITES AND TEXTURES */
 
+	_backgroundTexture.loadFromFile("Images/wood_background.bmp");
+	_background.setTexture(_backgroundTexture);
+	_background.setPosition(0, 0);
+
 	_gridBackgroundTexture.loadFromFile("Images/Goban.bmp");
 	_gridBackground.setTexture(_gridBackgroundTexture);
 	_gridBackground.setPosition(_gridBackgroundRect.left, _gridBackgroundRect.top);
@@ -82,6 +86,7 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 void PlayerVsAIModel::Display(sf::RenderWindow *window)
 {
 	window->clear();
+	window->draw(_background);
 	window->draw(_gridBackground);
 	for (unsigned int y = 0; y < _grid->getSideSize(); y++)
 	{

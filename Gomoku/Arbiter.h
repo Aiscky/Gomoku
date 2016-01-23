@@ -63,8 +63,16 @@ public:
 	/* FUNCTION TO CHECK IF THE DOUBLE TREE RULE IS FOLLOWED */
 	bool doesCreateDoubleThree();
 
+	bool CheckFreeThree(char startCellX, char startCellY, t_orientation orientationSteps);
+
+	bool CheckFreeCellForThree(char cellX, char cellY, t_orientation orientationSteps, int limit, int * PawnsCount, int * FreeCell);
+
+	bool isInsideGrid(int x, int y);
+
 	/* FUNCTION TO CHECK IF ADJACENT RULE IS FOLLOWED */
 	bool isAdjacentToExistingPawn();
+
+	bool isDoubleThree();
 
 	/* FUNCTIONS OF INTERNAL FUNCTIONNING OF CheckDoubleTree */
 	bool CheckFreeLineSide(char startCellX, char startCellY, t_orientation OrientationSteps, Direction direction);

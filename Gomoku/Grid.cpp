@@ -89,6 +89,15 @@ char Grid::getCell(char x, char y)
 	return (_grid[y][x]);
 }
 
+char Grid::getNextCell(char x, char y, char directionX, char directionY)
+{
+	x += directionX;
+	y += directionY;
+	if (x < 0 || x > squareNumber - 1 || y < 0 || y > squareNumber - 1)
+		return (EDGE);
+	return (_grid[y][x]);
+}
+
 bool Grid::isCellEmpty(char x, char y)
 {
 	if (_grid[y][x] == NONE)

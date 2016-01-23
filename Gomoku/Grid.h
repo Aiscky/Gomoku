@@ -44,6 +44,7 @@ public:
 	void deletePawn(char x, char y);
 	bool isCellEmpty(char x, char y);
 	char getCell(char x, char y);
+	char getNextCell(char x, char y, char directionX, char directionY);
 	unsigned char getSideSize();
 	char getLeft();
 	char getRight();

@@ -4,6 +4,7 @@
 #include "AI.h"
 #include "GameEngine.h"
 #include "Arbiter.h"
+#include "InGameHUD.h"
 
 class Grid;
 class AI;
@@ -20,6 +21,14 @@ private:
 	Grid *_grid;
 	AI *_bot;
 
+	char _currentTurnNumber;
+
+	enum Player
+	{
+		BLACK,
+		WHITE
+	};
+
 	sf::Texture _pawnsTexture[2];
 	sf::Sprite _pawnsSprites[2];
 	sf::Texture _gridBackgroundTexture;
@@ -28,6 +37,7 @@ private:
 	sf::RenderWindow *_window;
 	EventManager **_eventManagerAddr;
 	Arbiter _arbiter;
+	InGameHUD *_HUD;
 
 public:
 	PlayerVsAIModel(sf::RenderWindow *, EventManager **);
@@ -35,4 +45,5 @@ public:
 	void Display(sf::RenderWindow *window);
 	bool Clicked(float x, float y);
 	bool BackToMenu();
+	void SettingHUD();
 };

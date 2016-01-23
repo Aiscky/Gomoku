@@ -32,6 +32,7 @@ private:
 	t_orientation orientationCoefficients[4];
 
 	static const unsigned char orientationCoefficientsNumber = 4;
+	static const unsigned char numberOfPairsToWin = 5;
 
 	enum Direction
 	{
@@ -52,6 +53,9 @@ private:
 	bool shouldExit;
 
 	static const char FreeLinePawnsNumber = 3;
+
+	bool CheckWinningStateForOrientation(char startingCellX, char startingCellY, t_orientation orientationCoefficient);
+	void CheckWinningStateForDirection(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction);
 
 public:
 	Arbiter();
@@ -82,7 +86,8 @@ public:
 	bool CheckFreeCrossingLinesForLine(char startingCellX, char startingCellY, t_orientation orientationCoefficient);
 	bool CheckFreeCrossingLinesForLineSide(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction);
 	bool CheckFreeCrossingLinesForCell(char cellX, char cellY, t_orientation orientationCoefficient);
-	bool CheckSideFreeCrossingLines(t_orientation orientationCoefficient);
+
+	bool CheckWinningStateFromCell(char cellX, char cellY);
 
 	t_orientation getOrientationCoefficientOpposite(t_orientation orientationCoefficient);
 };

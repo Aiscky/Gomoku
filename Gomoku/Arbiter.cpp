@@ -123,3 +123,52 @@ Arbiter::t_orientation Arbiter::getOrientationCoefficientOpposite(t_orientation 
 	
 	return orientationCoefficient;
 }
+
+/* CHECKING FOR WIN */
+
+bool Arbiter::CheckWinningStateFromCell(char cellX, char cellY)
+{
+	for (unsigned char n = 0; n < orientationCoefficientsNumber; n++)
+	{
+		if (CheckWinningStateForOrientation(cellX, cellY, orientationCoefficients[n]))
+		{
+			std::cout << "WINNING" << std::endl;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Arbiter::CheckWinningStateForOrientation(char cellX, char cellY, t_orientation orientationCoefficient)
+{
+	linePawnsCount = 0;
+
+	CheckWinningStateForDirection(cellX, cellY, orientationCoefficient, NORMAL);
+	CheckWinningStateForDirection(cellX - orientationCoefficient.x, cellY - orientationCoefficient.y, orientationCoefficient, OPPOSITE);
+	
+	if (linePawnsCount >= 5)
+		return true;
+	return false;
+}
+
+void Arbiter::CheckWinningStateForDirection(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction)
+{
+	char cellX = startingCellX;
+	char cellY = startingCellY;
+
+	Grid::PlayerColor pawnColor;
+
+	if (direction == OPPOSITE)
+		orientationCoefficient = getOrientationCoefficientOpposite(orientationCoefficient);
+
+	while ((pawnColor = (Grid::PlayerColor)grid->getCell(cellX, cellY)) != Grid::EDGE)
+	{
+		if (pawnColor != currentPlayer)
+			return;
+
+		linePawnsCount++;
+		cellX += orientationCoefficient.x;
+		cellY += orientationCoefficient.y;
+	}
+}

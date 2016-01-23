@@ -28,11 +28,13 @@ void AI::play()
 					bestX = x;
 					bestY = y;
 				}
+				_grid->cancelCapture(Grid::BLACK);
 				_grid->deletePawn(x, y);
 			}
 		}
 	}
 	_grid->addPawn(bestX, bestY, Grid::BLACK);
+	_grid->cleanCapture();
 }
 
 int AI::Min(int depth)
@@ -48,6 +50,7 @@ int AI::Min(int depth)
 			{
 				_grid->addPawn(x, y, Grid::WHITE);
 				_beta = std::min(_beta, Max(depth - 1));
+				_grid->cancelCapture(Grid::WHITE);
 				_grid->deletePawn(x, y);
 				if (_beta <= _alpha)
 					return (_alpha);
@@ -70,6 +73,7 @@ int AI::Max(int depth)
 			{
 				_grid->addPawn(x, y, Grid::BLACK);
 				_alpha = std::max(_alpha, Min(depth - 1));
+				_grid->cancelCapture(Grid::BLACK);
 				_grid->deletePawn(x, y);
 				
 			}
@@ -378,6 +382,11 @@ int AI::Eval()
 					{
 						value += 2;
 					}
+					else if (_grid->getCell(x - 2, y - 2) == Grid::NONE && _grid->getCell(x - 3, y - 3) == Grid::NONE
+						&& (_grid->getCell(x - 4, y - 4) == Grid::NONE || _grid->getCell(x + 1, y + 1) == Grid::NONE))
+					{
+						value += 2;
+					}
 				}
 			}
 			else
@@ -393,6 +402,32 @@ int AI::Eval()
 		else
 			X++;
 	}
+
+	// CAPTURES
+
+	//WHITE
+	if (_grid->getPlayersPawnsCaptured()[1] == 2)
+		value -= 100;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 4)
+		value -= 200;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 6)
+		value -= 300;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 8)
+		value -= 500;
+	else if (_grid->getPlayersPawnsCaptured()[1] == 10)
+		value -= 8000;
+
+	//BLACK
+	if (_grid->getPlayersPawnsCaptured()[0] == 2)
+		value += 100;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 4)
+		value += 200;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 6)
+		value += 300;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 8)
+		value += 500;
+	else if (_grid->getPlayersPawnsCaptured()[0] == 10)
+		value += 8000;
 
 	return (value);
 }

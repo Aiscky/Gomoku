@@ -17,10 +17,14 @@ class MenuModel : public Model
 private:
 	sf::Texture _menuBackgroundTexture;
 	sf::Sprite _menuBackground;
+	sf::Sprite _cursor;
+	sf::Texture _cursorTexture;
 	std::vector<Button *> _buttonList;
 	EventManager **_eventManagerAddr;
 	sf::RenderWindow *_window;
 	unsigned int _index;
+
+	int _cursorPosition[3][2];
 	
 public:
 	MenuModel(sf::RenderWindow *window, EventManager **eventManager);
@@ -30,4 +34,6 @@ public:
 	void GoPrevious();
 	void GoNext();
 	void Execute();
+	void Execute(char index);
+	void moveCursor(char index);
 };

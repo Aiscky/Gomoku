@@ -64,7 +64,8 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 			_grid->cleanCapture();
 			_grid->RemovePawnFromPlayerPawnsLeft(WHITE);
 			_HUD->setPawnsLeftField((char)WHITE, _grid->getPlayersPawnsLeft()[WHITE]);
-			
+			Display(_window);
+
 			_bot->play();
 			_grid->RemovePawnFromPlayerPawnsLeft(BLACK);
 			_HUD->setPawnsLeftField((char)BLACK, _grid->getPlayersPawnsLeft()[BLACK]);
@@ -73,7 +74,6 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 			_HUD->setCurrentTurnNumberField(_currentTurnNumber);
 			_HUD->setCapturedPawnsField(BLACK, _grid->getPlayersPawnsCaptured()[BLACK]);
 			_HUD->setCapturedPawnsField(WHITE, _grid->getPlayersPawnsCaptured()[WHITE]);
-			_grid->affGrid();
 		}
 	}
 	return true;

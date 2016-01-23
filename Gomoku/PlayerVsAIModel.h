@@ -18,6 +18,7 @@ private:
 
 	bool _winningStates[2];
 	char _playersPawnsLeft[2];
+	char _lastWinningPawn[2][2];
 	Grid *_grid;
 	AI *_bot;
 

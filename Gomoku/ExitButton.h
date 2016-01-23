@@ -11,10 +11,8 @@ class ExitButton : public Button
 
 private:
 	EventManager **_eventManagerAddr;
-	static const unsigned int _buttonWidth = 120;
-	static const unsigned int _buttonHeight = 30;
-	static const unsigned int _buttonOriginX = 590;
-	static const unsigned int _buttonOriginY = 380;
+	static const unsigned int _buttonOriginX = 540;
+	static const unsigned int _buttonOriginY = 530;
 
 public:
 	ExitButton(sf::RenderWindow *window);

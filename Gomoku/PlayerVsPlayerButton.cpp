@@ -1,7 +1,7 @@
 #include "PlayerVsPlayerButton.h"
 
 PlayerVsPlayerButton::PlayerVsPlayerButton(EventManager **eventManagerAddr, sf::RenderWindow *window) 
-	: Button(sf::Color::Cyan, sf::Color::Green, sf::Color::Red, _buttonWidth, _buttonHeight, _buttonOriginX, _buttonOriginY, "2 Players", false)
+	: Button(_buttonOriginX, _buttonOriginY, "Player Vs Player")
 {
 	_eventManagerAddr = eventManagerAddr;
 	_window = window;

@@ -126,8 +126,10 @@ Arbiter::t_orientation Arbiter::getOrientationCoefficientOpposite(t_orientation 
 
 /* CHECKING FOR WIN */
 
-bool Arbiter::CheckWinningStateFromCell(char cellX, char cellY)
+bool Arbiter::CheckWinningStateFromCell(Grid::PlayerColor playerColor, char cellX, char cellY)
 {
+	currentPlayer = playerColor;
+
 	for (unsigned char n = 0; n < orientationCoefficientsNumber; n++)
 	{
 		if (CheckWinningStateForOrientation(cellX, cellY, orientationCoefficients[n]))

@@ -87,7 +87,7 @@ public:
 	bool CheckFreeCrossingLinesForLineSide(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction);
 	bool CheckFreeCrossingLinesForCell(char cellX, char cellY, t_orientation orientationCoefficient);
 
-	bool CheckWinningStateFromCell(char cellX, char cellY);
+	bool CheckWinningStateFromCell(Grid::PlayerColor playerColor, char cellX, char cellY);
 
 	t_orientation getOrientationCoefficientOpposite(t_orientation orientationCoefficient);
 };

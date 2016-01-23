@@ -58,21 +58,33 @@ bool PVPModel::Clicked(float x, float y)
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
 		if (_arbiter.CheckPlayable(_currentPlayerColor, _grid, X, Y))
 		{
-			/* CHECK IF STILL WINNING IF WINNING STATE = TRUE */
-
-			/*
-			if (_winningStates[0])
+			if (_winningStates[_currentPlayer])
 			{
-				if (_arbiter->CheckWinningStateFromBoard(grid, currentPlayer))
-					-> winning
+				if (_arbiter.CheckWinningStateFromCell(_lastWinningPawn[_currentPlayer][0], _lastWinningPawn[_currentPlayer][1]))
+				{
+					this->BackToMenu();
+					return false;
+				}
 			}
-			*/
 
 			_grid->addPawn(X, Y, _currentPlayerColor);
 			_grid->cleanCapture();
 			_grid->RemovePawnFromPlayerPawnsLeft(_currentPlayer);
 			_HUD->setPawnsLeftField((char)_currentPlayer, _grid->getPlayersPawnsLeft()[_currentPlayer]);
 			_HUD->setCapturedPawnsField(_currentPlayer, _grid->getPlayersPawnsCaptured()[_currentPlayer]);
+
+			if (_grid->getPlayersPawnsCaptured()[_currentPlayer] >= 10)
+			{
+				this->BackToMenu();
+				return false;
+			}
+
+			if (_arbiter.CheckWinningStateFromCell(X, Y))
+			{
+				_winningStates[_currentPlayer] = true;
+				_lastWinningPawn[_currentPlayer][0] = X;
+				_lastWinningPawn[_currentPlayer][1] = Y;
+			}
 
 			ChangePlayerTurn();
 		}

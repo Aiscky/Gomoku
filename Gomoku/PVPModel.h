@@ -24,6 +24,7 @@ private:
 	Grid::PlayerColor _currentPlayerColor;
 	Player _currentPlayer;
 	bool _winningStates[2];
+	char _lastWinningPawn[2][2];
 
 	char _currentTurnNumber;
 

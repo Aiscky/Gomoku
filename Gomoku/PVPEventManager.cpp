@@ -34,8 +34,10 @@ bool PVPEventManager::HandleEvent()
 			switch (event.mouseButton.button)
 			{
 			case sf::Mouse::Left:
-				((PVPModel*)_model)->Clicked(event.mouseButton.x, event.mouseButton.y);
-				_model->Display(_window);
+				if (((PVPModel*)_model)->Clicked(event.mouseButton.x, event.mouseButton.y))
+					_model->Display(_window);
+				else
+					return false;
 				break;
 			}
 		}

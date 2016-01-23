@@ -54,6 +54,9 @@ private:
 
 	static const char FreeLinePawnsNumber = 3;
 
+	bool CheckWinningStateForOrientation(char startingCellX, char startingCellY, t_orientation orientationCoefficient);
+	void CheckWinningStateForDirection(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction);
+
 public:
 	Arbiter();
 	~Arbiter();
@@ -76,9 +79,7 @@ public:
 	bool CheckFreeCrossingLinesForLineSide(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction);
 	bool CheckFreeCrossingLinesForCell(char cellX, char cellY, t_orientation orientationCoefficient);
 
-	void DoCaptureFromCell();
-	bool CheckWinningStateFromCell();
-	bool CheckWinningStateFromBoard();
+	bool CheckWinningStateFromCell(char cellX, char cellY);
 
 	t_orientation getOrientationCoefficientOpposite(t_orientation orientationCoefficient);
 };

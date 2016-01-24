@@ -25,6 +25,8 @@ private:
 	Player _currentPlayer;
 	bool _winningStates[2];
 	char _lastWinningPawn[2][2];
+	
+	bool _isGameFinished;
 
 	char _currentTurnNumber;
 
@@ -34,6 +36,10 @@ private:
 	sf::Sprite _gridBackground;
 	sf::Texture _backgroundTexture;
 	sf::Sprite _background;
+
+	sf::Font _font;
+	sf::Text _blackWinningText;
+	sf::Text _whiteWinningText;
 
 	InGameHUD *_HUD;
 

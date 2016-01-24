@@ -41,6 +41,33 @@ PVPModel::PVPModel(sf::RenderWindow *window, EventManager **eventManagerAddr)
 	_winningStates[BLACK] = false;
 	_winningStates[WHITE] = false;
 
+	_isGameFinished = false;
+
+	/* SETTING BLACK AND WHITE WINNING TEXT */
+
+	if (!_font.loadFromFile("Fonts/Track.TTF"))
+	{
+		char *error = (char *)malloc(265);
+
+		strerror_s(error, 256, errno);
+		std::cout << error << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
+	_whiteWinningText.setString("White Player Won");
+	_whiteWinningText.setFont(_font);
+	_whiteWinningText.setPosition(400.f, 180.f);
+	_whiteWinningText.setCharacterSize(50);
+	_whiteWinningText.setColor(sf::Color::White);
+
+	_blackWinningText.setString("Black Player Won");
+	_blackWinningText.setFont(_font);
+	_blackWinningText.setPosition(400.f, 180.f);
+	_blackWinningText.setCharacterSize(50);
+	_blackWinningText.setColor(sf::Color::Black);
+
+	/* SETTING HUD */
+
 	SettingHUD();
 }
 
@@ -53,6 +80,9 @@ void PVPModel::SettingHUD()
 
 bool PVPModel::Clicked(float x, float y)
 {
+	if (_isGameFinished)
+		return true;
+
 	if (_gridBackgroundRect.contains(x, y))
 	{
 		int X;
@@ -70,8 +100,8 @@ bool PVPModel::Clicked(float x, float y)
 
 			if (_grid->getPlayersPawnsCaptured()[_currentPlayer] >= 10)
 			{
-				this->BackToMenu();
-				return false;
+				_isGameFinished = true;
+				return true;
 			}
 
 			if (_arbiter.CheckWinningStateFromCell(_currentPlayerColor, X, Y))
@@ -79,19 +109,16 @@ bool PVPModel::Clicked(float x, float y)
 				_winningStates[_currentPlayer] = true;
 				_lastWinningPawn[_currentPlayer][0] = X;
 				_lastWinningPawn[_currentPlayer][1] = Y;
-				std::cout << X << " : " << Y << std::endl;
 			}
 
 			ChangePlayerTurn();
 
 			if (_winningStates[_currentPlayer])
 			{
-				std::cout << (int)_lastWinningPawn[_currentPlayer][0] << " : " << (int)_lastWinningPawn[_currentPlayer][1] << std::endl;
-
 				if (_arbiter.CheckWinningStateFromCell(_currentPlayerColor, _lastWinningPawn[_currentPlayer][0], _lastWinningPawn[_currentPlayer][1]))
 				{
-					this->BackToMenu();
-					return false;
+					_isGameFinished = true;
+					return true;
 				}
 				else
 					_winningStates[_currentPlayer] = false;
@@ -138,6 +165,18 @@ void PVPModel::Display(sf::RenderWindow *window)
 				_pawnsSprites[WHITE].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
 				window->draw(_pawnsSprites[WHITE]);
 			}
+		}
+	}
+
+	if (_isGameFinished)
+	{
+		if (_currentPlayer == WHITE)
+		{
+			_window->draw(_whiteWinningText);
+		}
+		else
+		{
+			_window->draw(_blackWinningText);
 		}
 	}
 

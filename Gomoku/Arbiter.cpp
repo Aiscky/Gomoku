@@ -99,7 +99,7 @@ bool Arbiter::CheckFreeThree(char cellX, char cellY, t_orientation orientationSt
 	return false;
 }
 
-bool Arbiter::CheckFreeCellForThree(char cellX, char cellY, t_orientation orientationSteps, int limit,int *PawnsCount, int *FreeCell)
+bool Arbiter::CheckFreeCellForThree(char cellX, char cellY, t_orientation orientationSteps, int limit, int *PawnsCount, int *FreeCell)
 {
 	for (int move = 1; move <= limit; move++)
 	{

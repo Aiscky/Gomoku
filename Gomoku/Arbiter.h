@@ -56,6 +56,10 @@ private:
 
 	bool CheckWinningStateForOrientation(char startingCellX, char startingCellY, t_orientation orientationCoefficient);
 	void CheckWinningStateForDirection(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction);
+	
+	bool isDoubleThree();
+	bool CheckFreeThree(char startCellX, char startCellY, t_orientation orientationSteps);
+	bool CheckFreeCellForThree(char cellX, char cellY, t_orientation orientationSteps, int limit, int * PawnsCount, int * FreeCell);
 
 public:
 	Arbiter();
@@ -64,28 +68,8 @@ public:
 	/* MAIN FUNCTION TO CHECK IF PAWN LOCATION IS VALID */
 	bool CheckPlayable(Grid::PlayerColor currentPlayer, Grid *grid, char x, char y);
 
-	/* FUNCTION TO CHECK IF THE DOUBLE TREE RULE IS FOLLOWED */
-	bool doesCreateDoubleThree();
-
-	bool CheckFreeThree(char startCellX, char startCellY, t_orientation orientationSteps);
-
-	bool CheckFreeCellForThree(char cellX, char cellY, t_orientation orientationSteps, int limit, int * PawnsCount, int * FreeCell);
-
-	bool isInsideGrid(int x, int y);
-
 	/* FUNCTION TO CHECK IF ADJACENT RULE IS FOLLOWED */
 	bool isAdjacentToExistingPawn();
-
-	bool isDoubleThree();
-
-	/* FUNCTIONS OF INTERNAL FUNCTIONNING OF CheckDoubleTree */
-	bool CheckFreeLineSide(char startCellX, char startCellY, t_orientation OrientationSteps, Direction direction);
-	bool CheckFreeLine(char startCellX, char startCellY, t_orientation orientationSteps);
-	void UpdateCountAndFlagsFromCell(char cellX, char cellY);
-
-	bool CheckFreeCrossingLinesForLine(char startingCellX, char startingCellY, t_orientation orientationCoefficient);
-	bool CheckFreeCrossingLinesForLineSide(char startingCellX, char startingCellY, t_orientation orientationCoefficient, Direction direction);
-	bool CheckFreeCrossingLinesForCell(char cellX, char cellY, t_orientation orientationCoefficient);
 
 	bool CheckWinningStateFromCell(Grid::PlayerColor playerColor, char cellX, char cellY);
 

@@ -38,6 +38,29 @@ PlayerVsAIModel::PlayerVsAIModel(sf::RenderWindow *window, EventManager **eventM
 	_winningStates[BLACK] = false;
 	_winningStates[WHITE] = false;
 
+	_isGameFinished = false;
+
+	if (!_font.loadFromFile("Fonts/Track.TTF"))
+	{
+		char *error = (char *)malloc(265);
+
+		strerror_s(error, 256, errno);
+		std::cout << error << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
+	_whiteWinningText.setString("White Player Won");
+	_whiteWinningText.setFont(_font);
+	_whiteWinningText.setPosition(400.f, 180.f);
+	_whiteWinningText.setCharacterSize(50);
+	_whiteWinningText.setColor(sf::Color::White);
+
+	_blackWinningText.setString("Black Player Won");
+	_blackWinningText.setFont(_font);
+	_blackWinningText.setPosition(400.f, 180.f);
+	_blackWinningText.setCharacterSize(50);
+	_blackWinningText.setColor(sf::Color::Black);
+
 	//	SETTING HUD
 
 	SettingHUD();
@@ -55,10 +78,15 @@ void PlayerVsAIModel::SettingHUD()
 
 bool PlayerVsAIModel::Clicked(float x, float y)
 {
+	if (_isGameFinished)
+		return true;
+
 	if (_gridBackgroundRect.contains(x, y))
 	{
 		int X;
 		int Y;
+
+		_currentPlayer = WHITE;
 
 		X = floor((x - _gridBackgroundRect.left) / _squareSize.x);
 		Y = floor((y - _gridBackgroundRect.top) / _squareSize.y);
@@ -70,6 +98,20 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 			_HUD->setPawnsLeftField((char)WHITE, _grid->getPlayersPawnsLeft()[WHITE]);
 			Display(_window);
 
+			if (_grid->getPlayersPawnsCaptured()[WHITE] >= 10)
+			{
+				_isGameFinished = true;
+				return true;
+			}
+
+			if (_arbiter.CheckWinningStateFromCell(Grid::WHITE, X, Y))
+			{
+				_isGameFinished = true;
+				return true;
+			}
+
+			_currentPlayer = BLACK;
+
 			_bot->play();
 			_grid->RemovePawnFromPlayerPawnsLeft(BLACK);
 			_HUD->setPawnsLeftField((char)BLACK, _grid->getPlayersPawnsLeft()[BLACK]);
@@ -78,6 +120,24 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 			_HUD->setCurrentTurnNumberField(_currentTurnNumber);
 			_HUD->setCapturedPawnsField(BLACK, _grid->getPlayersPawnsCaptured()[BLACK]);
 			_HUD->setCapturedPawnsField(WHITE, _grid->getPlayersPawnsCaptured()[WHITE]);
+
+			_grid->affGrid();
+			std::cout << std::endl;
+			std::cout << std::endl;
+
+			if (_grid->getPlayersPawnsCaptured()[BLACK] >= 10)
+			{
+				_isGameFinished = true;
+				return true;
+			}
+
+			if (_arbiter.CheckWinningStateFromCell(Grid::BLACK, X, Y))
+			{
+				std::cout << "IL A GAGNE" << std::endl;
+
+				_isGameFinished = true;
+				return true;
+			}
 		}
 	}
 	return true;
@@ -102,8 +162,22 @@ void PlayerVsAIModel::Display(sf::RenderWindow *window)
 				_pawnsSprites[WHITE].setPosition(_gridBackgroundRect.left + _squareSize.x * x, _gridBackgroundRect.top + _squareSize.y * y);
 				window->draw(_pawnsSprites[WHITE]);
 			}
+
 		}
 	}
+
+	if (_isGameFinished)
+	{
+		if (_currentPlayer == WHITE)
+		{
+			_window->draw(_whiteWinningText);
+		}
+		else
+		{
+			_window->draw(_blackWinningText);
+		}
+	}
+
 	_HUD->Display(window);
 
 	window->display();

@@ -22,6 +22,8 @@ private:
 	Grid *_grid;
 	AI *_bot;
 
+	bool _isGameFinished;
+
 	char _currentTurnNumber;
 
 	enum Player
@@ -29,6 +31,12 @@ private:
 		BLACK,
 		WHITE
 	};
+
+	Player _currentPlayer;
+
+	sf::Font _font;
+	sf::Text _blackWinningText;
+	sf::Text _whiteWinningText;
 
 	sf::Texture _pawnsTexture[2];
 	sf::Sprite _pawnsSprites[2];

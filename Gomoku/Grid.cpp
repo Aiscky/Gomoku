@@ -208,18 +208,6 @@ char Grid::getBottom()
 	return (_searchSpace.bottom);
 }
 
-void Grid::affGrid()
-{
-	for (unsigned char y = 0; y < squareNumber; y++)
-	{
-		for (unsigned char x = 0; x < squareNumber; x++)
-		{
-			std::cout << (int)_grid[y][x];
-		}
-		std::cout << std::endl;
-	}
-}
-
 Grid::PlayerColor Grid::getOpponentColor(Grid::PlayerColor playerColor)
 {
 	if (playerColor == WHITE)

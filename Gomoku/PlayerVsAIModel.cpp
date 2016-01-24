@@ -121,10 +121,6 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 			_HUD->setCapturedPawnsField(BLACK, _grid->getPlayersPawnsCaptured()[BLACK]);
 			_HUD->setCapturedPawnsField(WHITE, _grid->getPlayersPawnsCaptured()[WHITE]);
 
-			_grid->affGrid();
-			std::cout << std::endl;
-			std::cout << std::endl;
-
 			if (_grid->getPlayersPawnsCaptured()[BLACK] >= 10)
 			{
 				_isGameFinished = true;
@@ -133,8 +129,6 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 
 			if (_arbiter.CheckWinningStateFromCell(Grid::BLACK, X, Y))
 			{
-				std::cout << "IL A GAGNE" << std::endl;
-
 				_isGameFinished = true;
 				return true;
 			}

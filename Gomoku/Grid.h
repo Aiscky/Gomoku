@@ -63,8 +63,6 @@ public:
 	void cancelCapture(PlayerColor color);
 	void cleanCapture();
 	
-	void affGrid();
-	
 	char *getPlayersPawnsLeft();
 	char *getPlayersPawnsCaptured();
 	void RemovePawnFromPlayerPawnsLeft(char playerNumber);

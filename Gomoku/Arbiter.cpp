@@ -134,7 +134,6 @@ bool Arbiter::CheckWinningStateFromCell(Grid::PlayerColor playerColor, char cell
 	{
 		if (CheckWinningStateForOrientation(cellX, cellY, orientationCoefficients[n]))
 		{
-			std::cout << "WINNING" << std::endl;
 			return true;
 		}
 	}

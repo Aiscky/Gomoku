@@ -6,11 +6,9 @@ AI::AI(Grid *grid)
 	srand(time(NULL));
 }
 
-void AI::play()
+void AI::play(char &X, char &Y)
 {
 	int depth = 2;
-	char bestX = 0;
-	char bestY = 0;
 	_alpha = -10000;
 	int max = _alpha;
 
@@ -25,15 +23,15 @@ void AI::play()
 				if (tmp >= max)
 				{
 					max = tmp;
-					bestX = x;
-					bestY = y;
+					X = x;
+					Y = y;
 				}
 				_grid->cancelCapture(Grid::BLACK);
 				_grid->deletePawn(x, y);
 			}
 		}
 	}
-	_grid->addPawn(bestX, bestY, Grid::BLACK);
+	_grid->addPawn(X, Y, Grid::BLACK);
 	_grid->cleanCapture();
 }
 

@@ -17,7 +17,7 @@ private:
 public:
 	AI(Grid *grid);
 	~AI() {};
-	void play();
+	void play(char &X, char &Y);
 	int Min(int);
 	int Max(int);
 	int Eval();

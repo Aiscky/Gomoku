@@ -83,8 +83,8 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 
 	if (_gridBackgroundRect.contains(x, y))
 	{
-		int X;
-		int Y;
+		char X;
+		char Y;
 
 		_currentPlayer = WHITE;
 
@@ -112,7 +112,7 @@ bool PlayerVsAIModel::Clicked(float x, float y)
 
 			_currentPlayer = BLACK;
 
-			_bot->play();
+			_bot->play(X, Y);
 			_grid->RemovePawnFromPlayerPawnsLeft(BLACK);
 			_HUD->setPawnsLeftField((char)BLACK, _grid->getPlayersPawnsLeft()[BLACK]);
 
